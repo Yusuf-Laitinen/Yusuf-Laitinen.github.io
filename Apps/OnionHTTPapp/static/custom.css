@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,700;1,900&display=swap');
+
+:root{
+    --icon: #7147c2;
+    --blue: #8761fc;
+    --dark-blue: #7147c2;
+    --moon-grey: #1d1e25;
+    --background: #242630;
+    --surfacePrimary: #1d1e25;
+    --surfaceSecondary: #3c3a47;
+
+}
+
+body{
+    font-family: 'Exo 2', sans-serif;
+    line-height: 19px;
+    background-color: var(--background);
+}
+
+#login {
+    margin-top: 30vh;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#login img{
+    width: 64px;
+    height: 64px;
+}
+
+#login input{
+    outline: none;
+    color: white;
+    background: var(--surfaceSecondary);
+    font-family: 'Exo 2', sans-serif;
+    font-size: large;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    margin: 0px 0px 8px;
+    width: 222px;
+}
+
+#login input:hover, #login input:focus {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+#login button{
+    font-size: large;
+    color: white;
+    font-family: 'Exo 2', sans-serif;
+    background-color: var(--blue);
+    outline: 0px;
+    border: 0px;
+    margin: 0px 0px 8px;
+    width: 256px;
+    height: 36.39px;
+}
+
+#login h1{
+    font-style: italic;
+    font-weight: 900;
+    color: white;
+}
+
+#app {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+}

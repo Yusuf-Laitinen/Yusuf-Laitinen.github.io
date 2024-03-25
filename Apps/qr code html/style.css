@@ -1,0 +1,146 @@
+body {
+    background-color: #29292F;
+    user-select: none;
+}
+
+#qrcode > img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* Styles for phones */
+@media only screen and (max-width: 767px) {
+    #qrcode {
+        border-radius: 10px;
+        position: absolute;
+        left: 10vw;
+        top: 10vw;
+        width: 80vw;
+        height: 80vw;
+        background-color: white;
+    }
+
+    #qrcode > img {
+        padding: 3vw 3vw;
+        width: 74vw;
+        height: 74vw;
+    }
+
+    #inputField {
+        content: "\a";
+        white-space: pre;
+        width: 80vw;
+        height: 50vh;
+        border-radius: 10px;
+        bottom: 5vh;
+        left: 10vw;
+        position: absolute;
+        background-color: #0B0B10;
+    }
+
+    #inputField > h1 {
+        font-size: 27px;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0px 30px;
+    }
+
+    #inputField > h3 {
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0px 30px;
+    }
+
+    #inputField > input {
+        width: 58vw;
+        height: 5vh;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        padding-left: 20px;
+        font-size: 15px;
+    }
+
+    #inputField > button {
+        background-color: #5D5D8B;
+        color: white;
+        margin-top: 10px;
+        width: 58vw;
+        height: 5vh;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        margin-left: 2vw;
+        font-size: 15px;
+    }
+}
+  
+/* Styles for PCs */
+@media only screen and (min-width: 768px) {
+    #qrcode {
+        position: absolute;
+        right: 4.5vw;
+        top: 10vh;
+        width: 80vh;
+        height: 80vh;
+        background-color: white;
+    }
+
+    #qrcode > img {
+        padding: 1vh 1vh;
+        width: 78vh;
+        height: 78vh;
+    }
+
+    #inputField {
+        padding-left: 2vw;
+        content: "\a";
+        white-space: pre;
+        width: 40vw;
+        height: 90vh;
+        border-radius: 15px;
+        top: 5vh;
+        left: 5vh;
+        position: absolute;
+        background-color: #0B0B10;
+    }
+
+    #inputField > h1 {
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0px 30px;
+    }
+
+    #inputField > h3 {
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0px 30px;
+    }
+
+    #inputField > input {
+        width: 30vw;
+        height: 5vh;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        padding-left: 20px;
+        font-size: 15px;
+    }
+
+    #inputField > button {
+        background-color: #5D5D8B;
+        color: white;
+        margin-top: 10px;
+        width: 30vw;
+        height: 5vh;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        margin-left: 0.5vw;
+        font-size: 15px;
+    }
+
+
+}
+  

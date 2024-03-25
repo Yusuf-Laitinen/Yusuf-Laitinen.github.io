@@ -1,0 +1,53 @@
+body {
+    overflow: hidden;
+    margin: 0;
+    text-align: left;
+}
+body:before {
+    content: "";
+    position: absolute;
+    width : 100%;
+    height: 100%;
+    background: inherit;
+    z-index: -1;
+
+    filter        : blur(10px);
+    -moz-filter   : blur(10px);
+    -webkit-filter: blur(10px);
+    -o-filter     : blur(10px);
+
+
+}
+
+#sb {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 30px;
+}
+
+#sb-div {
+    border: 10px solid black;
+}
+
+#stats {
+    padding: 9.5px 20px;
+    border: 10px solid black;
+    background-color: rgba(120, 120, 120, 0.477);
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: -2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff, 2px 2px 0 #ffffff;
+}
+
+button {
+    padding: 5px 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    border: 5px solid black;
+    color: black;
+    font-weight: bold;
+    border-radius: 0%;
+    left: 10px;
+}

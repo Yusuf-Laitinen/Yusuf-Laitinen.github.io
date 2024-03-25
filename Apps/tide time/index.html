@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="apple-touch-icon" href="src/apple-touch-icon.png">
+    <link rel="apple-touch-startup-image" href="src/splash.png">
+    <title>TideTimes</title>
+    <script src="https://www.tidetimes.org.uk/amble-tide-times.js" type="text/javascript" id="tideTime"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<header>
+    <button id="refresh" onclick="update()"><img src="https://lh3.googleusercontent.com/drive-viewer/AEYmBYTNZKH-46XPDggiBQy_s3HyqnulzJU14lH6l-zqc-XAngS3CYLCjBXLv9927hFd8LlRdYs1RoKhT3bfByyfbh6Ckf4NZw=s2560" /></button>
+    <h1>Amble Morpeth</h1>
+    <h4 id="currentDate">Hello</h4>
+    <img src="https://lh3.googleusercontent.com/drive-viewer/AEYmBYS3zVqf4CELzZOo4RZXGIxPLrCH8sIRyAB6LiHBlast9x97cBsZeIiJujUmJtleg_PDZklTDouTlif5M7trrQPAHgIqWw=s1600">
+
+</header>
+<body>
+    <div id="background"></div>
+    <button id="next" onclick="next()">Next</button>
+
+    <div id="prevData" class="tideInfo">
+        <h1>Previous Tide</h1>
+        <h3 id="previousTideType" class="type"></h>
+        <h3 id="previousTideTime" class="time"></h3>
+        <h3 id="previousTideDepth" class="depth"></h3>
+        
+    </div>
+
+    <div id="data" class="tideInfo" style="display: none;">
+        <h1>Upcoming Tides</h1>
+    </div>
+
+    
+
+    <img src="https://lh3.googleusercontent.com/drive-viewer/AEYmBYR9676gFyK13P3uH92LtOM4ApWQErtmnJouMp5HlYybtDFyhhXizlIw1lC6yTQ9mxzpWSRx9qEqbdRo-9SUF3SZM2y94Q=s1600" id="wave1">
+    <img src="https://lh3.googleusercontent.com/drive-viewer/AEYmBYR9676gFyK13P3uH92LtOM4ApWQErtmnJouMp5HlYybtDFyhhXizlIw1lC6yTQ9mxzpWSRx9qEqbdRo-9SUF3SZM2y94Q=s1600" id="wave2">
+
+    <script src="script.js"></script>
+</body>
+</html>

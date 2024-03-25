@@ -1,0 +1,43 @@
+/*Styling goes here */
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgb(16, 15, 103), rgb(80, 19, 110));
+  }
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #time, #seconds {
+    text-align: center;
+    margin: 0;
+    padding: 5px 5px;
+  }
+
+h1 {
+    filter: drop-shadow(10px 10px 0px #000);
+    font-family: 'Abril Fatface', cursive;
+    font-size: 500%;
+    background: linear-gradient(45deg, #B65EBA 0%, #2E8DE1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}
+
+h3 {
+    filter: drop-shadow(10px 10px 0px #000);
+    font-size: 300%;
+    font-family: 'Abril Fatface', cursive;
+    background: linear-gradient(45deg, #B65EBA 0%, #2E8DE1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}
