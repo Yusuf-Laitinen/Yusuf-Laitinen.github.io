@@ -1,0 +1,109 @@
+#tidewidget {
+    display: none;
+}
+
+body {
+    background-color: #000a18;
+}
+
+@keyframes wave-right {
+    from {
+        left: -100vw;
+    }
+    to {
+        left: 100vw;
+    }
+}
+
+@keyframes wave-left {
+    from {
+        left: 100vw;
+    }
+    to {
+        left: -100vw;
+    }
+}
+
+@keyframes spin {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
+
+#waveCircle #wave1::before {
+    content: "";
+    width: 323px;
+    height: 323px;
+    border-radius: 40%;
+    background-color: rgb(138, 224, 255);
+    position: fixed;
+    left: 8.5vw;
+    top: -20vh;
+    animation: linear infinite spin 5s;
+    z-index: 1;
+}
+
+#waveCircle #wave1{
+    left: 0;
+    top: -195px;
+    z-index: -1;
+    position: relative;
+    width: 195px;
+    height: 195px;
+    background-color: rgb(0, 119, 255);
+    border-radius: 50%;
+}
+
+#waveCircle #wave2::before {
+    content: "";
+    width: 323px;
+    height: 323px;
+    border-radius: 45%;
+    background-color: rgb(138, 224, 255);
+    position: fixed;
+    left: 8.5vw;
+    top: -20vh;
+    animation: linear infinite spin 5s;
+    z-index: 1;
+    animation-delay: 0.2s;
+
+}
+
+#waveCircle #wave2{
+    position: relative;
+    top: -390px;
+    width: 195px;
+    height: 195px;
+    background-color: rgba(0, 119, 255, 0.482);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+#waveCircle #overlay {
+    position: relative;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle at 54px 54px, transparent, #0f61a9a3);
+    border-radius: 50%;
+    z-index: 3;
+}
+
+#waveCircle  {
+    position: fixed;
+    left: 25vw;
+    top: 12.5vh;
+    width: 195px;
+    height: 195px;
+    clip-path: circle(97px);
+}
+
+#current {
+    width: 95vw;
+    height: 80vh;
+    background-image: linear-gradient(0deg, #126af4,#15bff7);
+    border-radius: 50px;
+}
