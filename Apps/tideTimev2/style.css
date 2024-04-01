@@ -10,14 +10,6 @@ body {
     background-color: #000a18;
 }
 
-@keyframes load {
-    from {
-        opacity: 100%;
-    }
-    to {
-        opacity: 0%;
-    }
-}
 
 @keyframes wave-right {
     from {
@@ -192,15 +184,6 @@ body {
     position: fixed;
     left: 2.5vw;
     padding-top: 5px;
-}
-
-#currentData #location::before {
-    content: "";
-    width: 95vw;
-    text-align: center;
-    color: white;
-    font-weight: 600;
-    font-size: 20px;
 }
 
 #currentData #location {
