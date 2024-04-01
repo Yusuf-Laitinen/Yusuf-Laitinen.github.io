@@ -176,7 +176,7 @@ body {
 
 #currentData {
     width: 95vw;
-    height: 80vh;
+    height: 75vh;
     background-image: linear-gradient(0deg, #126af4,#15bff7);
     border-radius: 50px;
     position: fixed;
@@ -185,7 +185,7 @@ body {
 }
 
 #currentData #location {
-    width: 93vw;
+    width: 95vw;
     text-align: center;
     color: white;
     font-weight: 600;
@@ -224,7 +224,7 @@ body {
     font-size: 100px;
     width: 100vw;
     left: 0;
-    top: 27vh;
+    top: 25vh;
 }
 
 #currentData #subtext {
@@ -236,7 +236,7 @@ body {
     width: 100vw;
     right: 0;
     font-weight: 500;
-    bottom: 42vh;
+    top: 45vh;
     opacity: 70%;
 }
 
@@ -246,7 +246,7 @@ body {
     width: 80vw;
     height: 2px;
     left: 10vw;
-    bottom: 42vh;
+    bottom: 45vh;
     background-color: rgba(255, 255, 255, 0.471);
     z-index: 4;
 }
@@ -264,7 +264,7 @@ body {
     width: 60vw;
     left: 0;
     font-weight: 500;
-    bottom: 30vh;
+    bottom: 35vh;
 }
 
 #currentData #CurrentTime {
@@ -276,7 +276,7 @@ body {
     width: 60vw;
     right: 0;
     font-weight: 500;
-    bottom: 30vh;
+    bottom: 35vh;
 }
 
 #currentData #subtext1 {
@@ -288,7 +288,7 @@ body {
     width: 60vw;
     left: 0;
     font-weight: 500;
-    bottom: 27vh;
+    bottom: 33vh;
     opacity: 70%;
 }
 
@@ -301,7 +301,7 @@ body {
     width: 60vw;
     right: 0;
     font-weight: 500;
-    bottom: 27vh;
+    bottom: 33vh;
     opacity: 70%;
 }
 
@@ -314,7 +314,7 @@ body {
     width: 100vw;
     right: 0;
     font-weight: 500;
-    bottom: 20vh;
+    bottom: 28vh;
     opacity: 70%;
 }
 
