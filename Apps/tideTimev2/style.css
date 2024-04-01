@@ -327,16 +327,30 @@ body {
 #todayData {
     position: fixed;
     width: 100vw;
-    height: 16.5vh;
-    background-color: #15bff7;
+    height: 14vh;
     bottom: 1vh;
     left: 0;
+    white-space: nowrap;
 }
 
 #todayData .slot {
-    width: 20vw;
-    height: 16.5vh;
-    background-color: aquamarine;
+    width: 19.5vw;
+    height: 13vh;
+    border-radius: 30px;
+    outline-style: inset;
+    outline: 3px solid #0b1d35;
+    float: left;
+    margin-left: 4vw;
+    color: white;
+}
+
+#todayData .slot.active {
+    width: 22vw;
+    height: 14vh;
+    margin-top: -3px;
+    border-radius: 35px;
+    outline-color: rgba(0, 115, 255, 0.652);
+    background-image: linear-gradient(0deg, #126af4,#15bff7);
 }
 
 #todayData .slot img {
@@ -344,28 +358,4 @@ body {
     height: 50px;
     position: relative;
     left: 12px;
-}
-
-#todayData #slot1 {
-    position: fixed;
-    bottom: 1vh;
-    left: 4vw;
-}
-
-#todayData #slot2 {
-    position: fixed;
-    bottom: 1vh;
-    left: 28vw;
-}
-
-#todayData #slot3 {
-    position: fixed;
-    bottom: 1vh;
-    right: 28vw;
-}
-
-#todayData #slot4 {
-    position: fixed;
-    bottom: 1vh;
-    right: 4vw;
 }
