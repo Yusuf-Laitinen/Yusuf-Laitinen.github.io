@@ -88,6 +88,8 @@ function update() {
         document.getElementById("LowTide").style.display = "none"
     }
 
+    document.getElementById("slot" + (nextIndex+1)).classList.add("active")
+
 
 }
 
