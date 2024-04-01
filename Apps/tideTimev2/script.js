@@ -80,6 +80,14 @@ function update() {
     document.getElementById("CurrentHeight").innerText = heights[nextIndex]
     document.getElementById("CurrentTime").innerText = times[nextIndex]
 
+    if (tides[nextIndex] == "Low") {
+        document.getElementById("HighTide").style.display = "none"
+        document.getElementById("LowTide").style.display = "block"
+    } else {
+        document.getElementById("HighTide").style.display = "block"
+        document.getElementById("LowTide").style.display = "none"
+    }
+
 
 }
 
