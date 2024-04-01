@@ -29,14 +29,15 @@
         <div id="todayData" >
     
             <h1 id="decoration" >Today</h1>
+            <h1 id="moreInfo" onclick="switchPage(true)">Details &#x279C;</h1>
     
-            <div id="slot1" class="slot" onclick="switchPage(true)">
+            <div id="slot1" class="slot">
                 <h3 id="slot1Status" class="status">Low</h3>
                 <img src="source/lowTide.png" id="slot1Icon">
                 <h3 id="slot1Time" class="time">08:12</h3>
             </div>
     
-            <div id="slot2" class="slot" onclick="switchPage(false)">
+            <div id="slot2" class="slot">
                 <h3 id="slot2Status" class="status">Low</h3>
                 <img src="source/lowTide.png" id="slot2Icon">
                 <h3 id="slot2Time" class="time">08:12</h3>
@@ -68,8 +69,8 @@
         </div>
     </div>
     
-    <div id="detailPage" style="display: none;">
-        <h1>Hello World</h1>
+    <div id="detailPage">
+        <h1 onclick="switchPage(false)">Hello World</h1>
     </div>
 
     <script src="https://www.tidetimes.org.uk/amble-tide-times.js" type="text/javascript" id="tideTime"></script>

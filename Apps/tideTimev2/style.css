@@ -521,6 +521,24 @@ body {
     animation: switchToHome var(--swipeLength) forwards; /* Adjusted animation shorthand */
 }
 
+#todayData #moreInfo {
+    color: white;
+    font-size: 20px;
+    position: fixed;
+    bottom: 22vh;
+    left: 72vw;
+}
+
+#todayData #moreInfo.swipeAway {
+    --left: 72vw;
+    animation: switchToDetail var(--swipeLength) forwards; /* Adjusted animation shorthand */
+}
+
+#todayData #moreInfo.swipeBack {
+    --left: 72vw;
+    animation: switchToHome var(--swipeLength) forwards; /* Adjusted animation shorthand */
+}
+
 #todayData .slot {
     text-align: center;
     width: 19.5vw;
@@ -573,8 +591,41 @@ body {
     font-weight: 600;
 }
 
+@keyframes showPage {
+    from {
+        left: var(--left);
+    }
+
+    to {
+        left: calc(var(--left) - 100vw);
+    }
+}
+
+@keyframes hidePage {
+    from {
+        left: calc(var(--left) - 100vw);
+    }
+
+    to {
+        left: var(--left);
+    }
+}
+
 #detailPage {
+    background-color: #000a18;
     width: 100vw;
     height: 100vh;
+    top: 0vh;
+    left: 100vw;
     position: fixed;
+}
+
+#detailPage.show {
+    --left: 100vw;
+    animation: showPage var(--swipeLength) forwards;
+}
+
+#detailPage.hide {
+    --left: 100vw;
+    animation: hidePage var(--swipeLength) forwards;
 }

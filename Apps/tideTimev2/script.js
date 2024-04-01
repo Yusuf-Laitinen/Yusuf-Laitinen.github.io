@@ -49,9 +49,15 @@ function switchPage(detail) {
     if (detail) {
         addClassToElementsWithinDiv("HomePage", "swipeAway");
         removeClassFromElementsWithinDiv("HomePage", "swipeBack")
+
+        addClassToElementsWithinDiv("detailPage", "show");
+        removeClassFromElementsWithinDiv("detailPage", "hide")
     } else {
         addClassToElementsWithinDiv("HomePage", "swipeBack");
         removeClassFromElementsWithinDiv("HomePage", "swipeAway")
+
+        addClassToElementsWithinDiv("detailPage", "hide");
+        removeClassFromElementsWithinDiv("detailPage", "show")
     }
 }
 
