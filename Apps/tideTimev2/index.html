@@ -15,15 +15,60 @@
     <div id="currentData">
         <h1 id="location"><img src="source/pin.png">Amble Morpeth</h1>
         <h3 id="tag"><b>⬤</b> Live</h3>
+        <h1 id="CurrentStatus">High</h1>
+        <h2 id="subtext">tide</h2>
+        <hr id="firstUnderline">
+        <h2 id="CurrentHeight">1.49m</h2>
+        <h3 id="subtext1">tide height</h3>
+        <h2 id="CurrentTime">08:12</h2>
+        <h3 id="subtext2">tide time</h3>
+        <h4 id="credit">Powered by <a href="https://www.tidetimes.org.uk">Tidetimes</a></h4>
     </div>
 
-    <div id="waveCircle">
+    <div id="todayData">
+        <div id="slot1" class="slot">
+            <h3 id="slot1Status">Low</h3>
+            <img src="source/lowTide.png" id="slot1Icon">
+            <h3 id="slot1Height">1.49m</h3>
+        </div>
+
+        <div id="slot2" class="slot">
+            <h3 id="slot2Status">Low</h3>
+            <img src="source/lowTide.png" id="slot2Icon">
+            <h3 id="slot2Height">1.49m</h3>
+        </div>
+
+        <div id="slot3" class="slot">
+            <h3 id="slot3Status">Low</h3>
+            <img src="source/lowTide.png" id="slot3Icon">
+            <h3 id="slot3Height">1.49m</h3>
+        </div>
+
+        <div id="slot4" class="slot">
+            <h3 id="slot4Status">Low</h3>
+            <img src="source/lowTide.png" id="slot4Icon">
+            <h3 id="slot4Height">1.49m</h3>
+        </div>
+    </div>
+
+    <div id="HighTide" >
         <div id="overlay"></div>
         <div id="wave1"></div>
         <div id="wave2"></div>
     </div>
+
+    <div id="LowTide" style="display: none;">
+        <div id="overlay"></div>
+        <div id="wave1"></div>
+        <div id="wave2"></div>
+    </div>
+
+    
+
     <script src="https://www.tidetimes.org.uk/amble-tide-times.js" type="text/javascript" id="tideTime"></script>
     <script src="script.js"></script>
+
+    
 
 </body>
 </html>
