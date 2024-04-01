@@ -271,7 +271,7 @@ body {
 }
 
 #currentData #CurrentStatus.swipeAway {
-    --left: 2.5vw;
+    --left: 0vw;
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
@@ -290,7 +290,7 @@ body {
 }
 
 #currentData #subtext.swipeAway {
-    --left: 2.5vw;
+    --left: 0vw;
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 

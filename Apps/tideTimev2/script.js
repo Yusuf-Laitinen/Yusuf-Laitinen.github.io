@@ -2,6 +2,7 @@ var tides = [];
 var times = [];
 var heights = [];
 
+
 function addClassToElementsWithinDiv(divId, className) {
     var div = document.getElementById(divId);
     var elements = div.querySelectorAll("*"); // Select all elements within the div
@@ -40,6 +41,16 @@ function getTime() {
 
     return currentTime // Output example: "08:45"
 
+}
+
+function switchPage(detail) {
+    if (detail) {
+        addClassToElementsWithinDiv("HomePage", "swipeAway");
+        removeClassFromElementsWithinDiv("HomePage", "swipeBack")
+    } else {
+        addClassToElementsWithinDiv("HomePage", "swipeBack");
+        removeClassFromElementsWithinDiv("HomePage", "swipeAway")
+    }
 }
 
 function getNextOccurringIndex(currentTime, timeList) {
@@ -116,6 +127,8 @@ function update() {
 
 window.onload = function() {
     // retrieve table
+
+    removeClassFromElementsWithinDiv("HomePage", "swipeAway");
     var table = document.getElementById("tidewidget");
 
     var tableContent = table.querySelector("table");
