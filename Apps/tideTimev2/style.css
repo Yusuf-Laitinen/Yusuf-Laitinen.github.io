@@ -1,5 +1,5 @@
 * {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #tidewidget {
@@ -8,6 +8,15 @@
 
 body {
     background-color: #000a18;
+}
+
+@keyframes load {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+    }
 }
 
 @keyframes wave-right {
@@ -102,7 +111,7 @@ body {
     top: 12.5vh;
     width: 195px;
     height: 195px;
-    clip-path: circle(97px);
+    clip-path: circle(80px);
 }
 
 /*Low tide*/
@@ -171,17 +180,27 @@ body {
     top: 12.5vh;
     width: 195px;
     height: 195px;
-    clip-path: circle(97px);
+    clip-path: circle(80px);
 }
 
 #currentData {
     width: 95vw;
-    height: 75vh;
+    height: 70vh;
     background-image: linear-gradient(0deg, #126af4,#15bff7);
+    box-shadow: 0px 0px 10px #15bff7;
     border-radius: 50px;
     position: fixed;
     left: 2.5vw;
     padding-top: 5px;
+}
+
+#currentData #location::before {
+    content: "";
+    width: 95vw;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
 }
 
 #currentData #location {
@@ -199,15 +218,15 @@ body {
 
 #currentData #tag {
     position: relative;
-    left: 37.5vw;
-    width: 15vw;
+    left: 35.8vw;
+    width: 20vw;
     height: 22px;
     font-size: 13px;
-    border: 2px solid white;
+    border: 0.6vw solid white;
     color: white;
     font-weight: 500;
     text-align: center;
-    padding-top: 3px;
+    padding-top: 5px;
     border-radius: 20px;
 }
 
@@ -246,13 +265,18 @@ body {
     width: 80vw;
     height: 2px;
     left: 10vw;
-    bottom: 45vh;
+    bottom: 46vh;
     background-color: rgba(255, 255, 255, 0.471);
     z-index: 4;
 }
 
 #currentData #firstUnderline {
     width: 0;
+    outline-width: 1px;
+    border: none;
+    position: fixed;
+    left: 10vw;
+    bottom: 44vh;
 }
 
 #currentData #CurrentHeight {
@@ -263,7 +287,7 @@ body {
     font-size: 40px;
     width: 60vw;
     left: 0;
-    font-weight: 500;
+    font-weight: 600;
     bottom: 35vh;
 }
 
@@ -275,7 +299,7 @@ body {
     font-size: 40px;
     width: 60vw;
     right: 0;
-    font-weight: 500;
+    font-weight: 600;
     bottom: 35vh;
 }
 
@@ -328,12 +352,21 @@ body {
     position: fixed;
     width: 100vw;
     height: 14vh;
-    bottom: 1vh;
+    bottom: 7vh;
     left: 0;
     white-space: nowrap;
 }
 
+#todayData #decoration {
+    color: white;
+    font-size: 25px;
+    position: fixed;
+    bottom: 21vh;
+    left: 5vw;
+}
+
 #todayData .slot {
+    text-align: center;
     width: 19.5vw;
     height: 13vh;
     border-radius: 30px;
@@ -347,15 +380,39 @@ body {
 #todayData .slot.active {
     width: 22vw;
     height: 14vh;
-    margin-top: -3px;
+    margin-top: -5px;
     border-radius: 35px;
     outline-color: rgba(0, 115, 255, 0.652);
     background-image: linear-gradient(0deg, #126af4,#15bff7);
+    box-shadow: 0px 0px 15px #15bff7;
+}
+
+#todayData .slot .status {
+    position: relative;
+    top: -10px;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 #todayData .slot img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     position: relative;
-    left: 12px;
+    top: -15px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgb(43, 74, 116);
+}
+
+#todayData .slot .time {
+    position: relative;
+    bottom: 27px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#todayData .slot.active .time {
+    position: relative;
+    bottom: 20px;
+    font-size: 15px;
+    font-weight: 600;
 }

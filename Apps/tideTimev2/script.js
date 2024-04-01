@@ -2,6 +2,87 @@ var tides = [];
 var times = [];
 var heights = [];
 
+function getTime() {
+    // Get current date/time
+    var now = new Date();
+
+    // Get hours and minutes
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+
+    // Add leading zeros if necessary
+    hours = (hours < 10 ? "0" : "") + hours;
+    minutes = (minutes < 10 ? "0" : "") + minutes;
+
+    // Concatenate hours and minutes with a colon separator
+    var currentTime = hours + ":" + minutes;
+
+    return currentTime // Output example: "08:45"
+
+}
+
+function getNextOccurringIndex(currentTime, timeList) {
+    // Convert currentTime to minutes for easier comparison
+    var currentTimeSplit = currentTime.split(":");
+    var currentHour = parseInt(currentTimeSplit[0]);
+    var currentMinute = parseInt(currentTimeSplit[1]);
+    var currentTimeInMinutes = currentHour * 60 + currentMinute;
+
+    // Iterate through the timeList
+    var nextIndex = 0;
+    var nextTimeInMinutes = Infinity;
+    for (var i = 0; i < timeList.length; i++) {
+        var timeSplit = timeList[i].split(":");
+        var hour = parseInt(timeSplit[0]);
+        var minute = parseInt(timeSplit[1]);
+        var timeInMinutes = hour * 60 + minute;
+
+        // Check if the current time is greater than the time in the list
+        if (timeInMinutes >= currentTimeInMinutes && timeInMinutes < nextTimeInMinutes) {
+            nextTimeInMinutes = timeInMinutes;
+            nextIndex = i;
+        }
+    }
+
+    if (currentTimeInMinutes >= timeInMinutes) {
+        nextIndex = 3
+    }
+
+    return nextIndex;
+}
+
+// Example usage
+var currentTime = "12:50";
+var timeList = ['01:57', '08:12', '14:20', '20:51'];
+var nextIndex = getNextOccurringIndex(currentTime, timeList);
+console.log(nextIndex); // Output: 2
+
+
+function update() {
+    for ( let i = 0; i <= 3; i++) {
+        console.log("slot" + (i+1) + "Status")
+        document.getElementById("slot" + (i+1) + "Status").innerText = tides[i]
+
+        if (tides[i] == "Low") {
+            document.getElementById("slot" + (i+1) + "Icon").src = "source/lowTide.png"
+        } else {
+            document.getElementById("slot" + (i+1) + "Icon").src = "source/highTide.png"
+        }
+
+        document.getElementById("slot" + (i+1) + "Time").innerText = times[i]
+    }
+
+    let currentTime = getTime()
+    //currentTime = "21:48"
+    let nextIndex = getNextOccurringIndex(currentTime, times)
+    document.getElementById("tag").innerHTML = "<b>⬤</b> " + currentTime;
+    document.getElementById("CurrentStatus").innerText = tides[nextIndex]
+    document.getElementById("CurrentHeight").innerText = heights[nextIndex]
+    document.getElementById("CurrentTime").innerText = times[nextIndex]
+
+
+}
+
 window.onload = function() {
     // retrieve table
     var table = document.getElementById("tidewidget");
@@ -24,4 +105,6 @@ window.onload = function() {
     console.log(tides);
     console.log(times);
     console.log(heights);
+
+    update()
 };
