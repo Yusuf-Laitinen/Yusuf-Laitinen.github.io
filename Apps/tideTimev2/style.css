@@ -10,6 +10,32 @@ body {
     background-color: #000a18;
 }
 
+:root {
+    --swipeLength : 0.5s;
+}
+
+@keyframes switchToDetail {
+    from {
+        left: var(--left);
+    }
+
+    to {
+        left: calc(var(--left) - 10vw);
+    }
+}
+
+#HomePage {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+}
+
+#HomePage.swipeAway {
+    --left: 0vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 
 @keyframes wave-right {
     from {
@@ -106,6 +132,11 @@ body {
     clip-path: circle(80px);
 }
 
+#HighTide.swipeAway {
+    --left: 25vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 /*Low tide*/
 
 #LowTide #wave1::before {
@@ -175,6 +206,11 @@ body {
     clip-path: circle(80px);
 }
 
+#LowTide.swipeAway {
+    --left: 25vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #currentData {
     width: 95vw;
     height: 70vh;
@@ -184,6 +220,11 @@ body {
     position: fixed;
     left: 2.5vw;
     padding-top: 5px;
+}
+
+#currentData.swipeAway {
+    --left: 2.5vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 #currentData #location {
@@ -229,6 +270,12 @@ body {
     top: 25vh;
 }
 
+#currentData #CurrentStatus.swipeAway {
+    --left: 2.5vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
+
 #currentData #subtext {
     text-align: center;
     position: fixed;
@@ -242,6 +289,11 @@ body {
     opacity: 70%;
 }
 
+#currentData #subtext.swipeAway {
+    --left: 2.5vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #currentData #firstUnderline::before {
     content: "";
     position: fixed;
@@ -251,6 +303,11 @@ body {
     bottom: 46vh;
     background-color: rgba(255, 255, 255, 0.471);
     z-index: 4;
+}
+
+#currentData #firstUnderline.swipeAway::before {
+    --left: 10vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 #currentData #firstUnderline {
@@ -274,6 +331,11 @@ body {
     bottom: 35vh;
 }
 
+#currentData #CurrentHeight.swipeAway {
+    --left: 0vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #currentData #CurrentTime {
     text-align: center;
     position: fixed;
@@ -284,6 +346,11 @@ body {
     right: 0;
     font-weight: 600;
     bottom: 35vh;
+}
+
+#currentData #CurrentTime.swipeAway {
+    --left: 40vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 #currentData #subtext1 {
@@ -299,6 +366,11 @@ body {
     opacity: 70%;
 }
 
+#currentData #subtext1.swipeAway {
+    --left: 0vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #currentData #subtext2 {
     text-align: center;
     position: fixed;
@@ -312,6 +384,11 @@ body {
     opacity: 70%;
 }
 
+#currentData #subtext2.swipeAway {
+    --left: 40vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #currentData #credit {
     text-align: center;
     position: fixed;
@@ -323,6 +400,11 @@ body {
     font-weight: 500;
     bottom: 28vh;
     opacity: 70%;
+}
+
+#currentData #credit.swipeAway {
+    --left: 0vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 #currentData #credit a {
@@ -340,12 +422,22 @@ body {
     white-space: nowrap;
 }
 
+#todayData.swipeAway {
+    --left: 0vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #todayData #decoration {
     color: white;
     font-size: 25px;
     position: fixed;
     bottom: 21vh;
     left: 5vw;
+}
+
+#todayData #decoration.swipeAway {
+    --left: 5vw;
+    animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 #todayData .slot {

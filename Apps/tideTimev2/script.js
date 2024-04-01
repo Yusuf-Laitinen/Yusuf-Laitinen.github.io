@@ -2,6 +2,27 @@ var tides = [];
 var times = [];
 var heights = [];
 
+function addClassToElementsWithinDiv(divId, className) {
+    var div = document.getElementById(divId);
+    var elements = div.querySelectorAll("*"); // Select all elements within the div
+
+    // Loop through each element and add the class
+    elements.forEach(function(element) {
+        element.classList.add(className);
+    });
+}
+
+// Function to remove a class from every element within a div
+function removeClassFromElementsWithinDiv(divId, className) {
+    var div = document.getElementById(divId);
+    var elements = div.querySelectorAll("*"); // Select all elements within the div
+
+    // Loop through each element and remove the class
+    elements.forEach(function(element) {
+        element.classList.remove(className);
+    });
+}
+
 function getTime() {
     // Get current date/time
     var now = new Date();
