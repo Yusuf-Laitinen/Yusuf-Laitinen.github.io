@@ -24,6 +24,16 @@ body {
     }
 }
 
+@keyframes switchToHome {
+    from {
+        left: calc(var(--left) - 10vw);
+    }
+
+    to {
+        left: var(--left);
+    }
+}
+
 #HomePage {
     width: 100vw;
     height: 100vh;
@@ -34,6 +44,11 @@ body {
 #HomePage.swipeAway {
     --left: 0vw;
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
+#HomePage.swipeBack {
+    --left: 0vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 
@@ -137,6 +152,11 @@ body {
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
+#HighTide.swipeBack {
+    --left: 25vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 /*Low tide*/
 
 #LowTide #wave1::before {
@@ -211,6 +231,11 @@ body {
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
+#LowTide.swipeBack {
+    --left: 25vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #currentData {
     width: 95vw;
     height: 70vh;
@@ -225,6 +250,11 @@ body {
 #currentData.swipeAway {
     --left: 2.5vw;
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
+#currentData.swipeBack {
+    --left: 2.5vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 #currentData #location {
@@ -275,6 +305,11 @@ body {
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
+#currentData #CurrentStatus.swipeBack {
+    --left: 2.5vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 
 #currentData #subtext {
     text-align: center;
@@ -294,6 +329,11 @@ body {
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
+#currentData #subtext.swipeBack {
+    --left: 0vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #currentData #firstUnderline::before {
     content: "";
     position: fixed;
@@ -308,6 +348,11 @@ body {
 #currentData #firstUnderline.swipeAway::before {
     --left: 10vw;
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
+#currentData #firstUnderline.swipeBack::before {
+    --left: 10vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 #currentData #firstUnderline {
@@ -336,6 +381,11 @@ body {
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
+#currentData #CurrentHeight.swipeBack {
+    --left: 0vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #currentData #CurrentTime {
     text-align: center;
     position: fixed;
@@ -351,6 +401,11 @@ body {
 #currentData #CurrentTime.swipeAway {
     --left: 40vw;
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
+#currentData #CurrentTime.swipeBack {
+    --left: 40vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 #currentData #subtext1 {
@@ -371,6 +426,11 @@ body {
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
+#currentData #subtext1.swipeBack {
+    --left: 0vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #currentData #subtext2 {
     text-align: center;
     position: fixed;
@@ -389,6 +449,11 @@ body {
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
+#currentData #subtext2.swipeBack {
+    --left: 40vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #currentData #credit {
     text-align: center;
     position: fixed;
@@ -405,6 +470,11 @@ body {
 #currentData #credit.swipeAway {
     --left: 0vw;
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
+#currentData #credit.swipeBack {
+    --left: 0vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 #currentData #credit a {
@@ -427,6 +497,11 @@ body {
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
+#todayData.swipeBack {
+    --left: 0vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
 #todayData #decoration {
     color: white;
     font-size: 25px;
@@ -438,6 +513,11 @@ body {
 #todayData #decoration.swipeAway {
     --left: 5vw;
     animation: switchToDetail var(--swipeLength) infinite; /* Adjusted animation shorthand */
+}
+
+#todayData #decoration.swipeBack {
+    --left: 5vw;
+    animation: switchToHome var(--swipeLength) infinite; /* Adjusted animation shorthand */
 }
 
 #todayData .slot {

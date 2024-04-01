@@ -5,6 +5,7 @@ var heights = [];
 
 function addClassToElementsWithinDiv(divId, className) {
     var div = document.getElementById(divId);
+    div.classList.add(className)
     var elements = div.querySelectorAll("*"); // Select all elements within the div
 
     // Loop through each element and add the class
@@ -16,6 +17,7 @@ function addClassToElementsWithinDiv(divId, className) {
 // Function to remove a class from every element within a div
 function removeClassFromElementsWithinDiv(divId, className) {
     var div = document.getElementById(divId);
+    div.classList.remove(className)
     var elements = div.querySelectorAll("*"); // Select all elements within the div
 
     // Loop through each element and remove the class
