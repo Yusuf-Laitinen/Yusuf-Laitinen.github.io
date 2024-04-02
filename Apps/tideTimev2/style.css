@@ -665,7 +665,8 @@ body {
 
 #detailPage #title{
     margin-left: 30px;
-    font-size: 20px;
+    font-size: 21px;
+    margin-bottom: 1vh;
     color: white;
 }
 
@@ -678,4 +679,75 @@ body {
     left: 15px;
     top: 16.5px;
     rotate: 45deg;
+}
+
+#detailPage .Slot {
+    width: 90vw;
+    height: 20vh;
+    margin-left: 5vw;
+    margin-bottom: 2.5vh;
+    background-image: linear-gradient(0deg, #15bef7, #126bf4);
+    border-radius: 20px;
+}
+
+#detailPage .Slot .status {
+    z-index: 10;
+    position: relative;
+    top: -23vh;
+    left: 5vw;
+    font-size: 40px;
+    color: white;
+}
+
+#detailPage .Slot .status b {
+    position: relative;
+    left: 3vw;
+    font-size: 25px;
+    opacity: 70%;
+    color: white;
+}
+
+#detailPage .Slot .time {
+    z-index: 10;
+    position: relative;
+    top: -28vh;
+    left: 7vw;
+    font-size: 40px;
+    color: white;
+}
+
+#detailPage .Slot .time b {
+    position: relative;
+    right: 2vw;
+    font-size: 25px;
+    opacity: 70%;
+    color: white;
+}
+
+#detailPage .Slot .height {
+    z-index: 10;
+    position: relative;
+    top: -35.5vh;
+    left: 7vw;
+    font-size: 40px;
+    color: white;
+}
+
+#detailPage .Slot .height b {
+    position: relative;
+    right: 2vw;
+    font-size: 25px;
+    top: 0.5vh;
+    opacity: 70%;
+    color: white;
+}
+
+#detailPage .Slot img {
+    z-index: 10;
+    position: relative;
+    right: -48vw;
+    top: 0.5vh;
+    width: 40vw;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px #000a18;
 }

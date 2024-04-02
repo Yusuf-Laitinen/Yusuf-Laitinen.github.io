@@ -130,6 +130,18 @@ function update() {
 
     document.getElementById("slot" + (nextIndex+1)).classList.add("active")
 
+    for ( let index = 1; index <= 4; index++) {
+        if (tides[index-1] == "Low") {
+            document.getElementById("Slot" + index + "Icon").src = "source/lowTide.png"
+        } else {
+            document.getElementById("Slot" + index + "Icon").src = "source/highTide.png"
+        }
+
+        document.getElementById("Slot" + index + "Status").innerHTML = tides[index-1] + "<b>tide</b>"
+        document.getElementById("Slot" + index + "Time").innerHTML = "<b>at</b>" + times[index-1]
+        document.getElementById("Slot" + index + "Height").innerHTML = "<b>measuring</b><br>" + heights[index-1]
+    }
+
 
 }
 
