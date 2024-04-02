@@ -147,8 +147,8 @@ function update() {
 
 window.onload = function() {
 
-    if ( window.navigator.standalone) {
-        document.getElementById("intro").style.display = "none"
+    if ( !window.navigator.standalone) {
+        document.getElementById("intro").style.display = "block"
     }
     // retrieve table
 
