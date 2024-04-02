@@ -521,12 +521,34 @@ body {
     animation: switchToHome var(--swipeLength) forwards; /* Adjusted animation shorthand */
 }
 
+#todayData #moreInfo::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    position: absolute;
+    left: 70px;
+    top: 3px;
+    rotate: 45deg;
+}
+
 #todayData #moreInfo {
     color: white;
     font-size: 20px;
     position: fixed;
     bottom: 22vh;
     left: 72vw;
+}
+
+#todayData #moreInfo::after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background-color: #000a18;
+    position: absolute;
+    left: 65px;
+    top: 3px;
+    rotate: 45deg;
 }
 
 #todayData #moreInfo.swipeAway {
@@ -628,4 +650,32 @@ body {
 #detailPage.hide {
     --left: 100vw;
     animation: hidePage var(--swipeLength) forwards;
+}
+
+#detailPage #title::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    position: absolute;
+    left: 10px;
+    top: 16.5px;
+    rotate: 45deg;
+}
+
+#detailPage #title{
+    margin-left: 30px;
+    font-size: 20px;
+    color: white;
+}
+
+#detailPage #title::after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background-color: #000a18;
+    position: absolute;
+    left: 15px;
+    top: 16.5px;
+    rotate: 45deg;
 }
