@@ -693,9 +693,9 @@ body {
 #detailPage .Slot .status {
     z-index: 10;
     position: relative;
-    top: -23vh;
+    top: -170px;
     left: 5vw;
-    font-size: 40px;
+    font-size: 30px;
     color: white;
 }
 
@@ -710,9 +710,9 @@ body {
 #detailPage .Slot .time {
     z-index: 10;
     position: relative;
-    top: -28vh;
+    top: -200px;
     left: 7vw;
-    font-size: 40px;
+    font-size: 30px;
     color: white;
 }
 
@@ -727,9 +727,9 @@ body {
 #detailPage .Slot .height {
     z-index: 10;
     position: relative;
-    top: -35.5vh;
+    top: -245px;
     left: 7vw;
-    font-size: 40px;
+    font-size: 30px;
     color: white;
 }
 
@@ -737,7 +737,7 @@ body {
     position: relative;
     right: 2vw;
     font-size: 25px;
-    top: 0.5vh;
+    top: 6px;
     opacity: 70%;
     color: white;
 }
@@ -747,7 +747,9 @@ body {
     position: relative;
     right: -48vw;
     top: 0.5vh;
-    width: 40vw;
+    width: 35vw;
     border-radius: 50%;
     box-shadow: 0px 0px 10px #000a18;
+    margin-top: 10px;
+    margin-right: -10px;
 }
