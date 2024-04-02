@@ -3,6 +3,15 @@
     will-change: left;
 }
 
+#intro {
+    z-index: 200;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
 #tidewidget {
     display: none;
 }

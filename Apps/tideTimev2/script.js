@@ -146,6 +146,10 @@ function update() {
 }
 
 window.onload = function() {
+
+    if ( window.navigator.standalone) {
+        document.getElementById("intro").style.display = "none"
+    }
     // retrieve table
 
     removeClassFromElementsWithinDiv("HomePage", "swipeAway");
