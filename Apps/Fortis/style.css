@@ -1,0 +1,18 @@
+body {
+    background-color: blue;
+    padding-top: 5px;
+    padding-left: 16px; /* Fallback for padding-left */
+    padding-right: 16px; /* Fallback for padding-right */
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+html {
+    background-color: aqua;
+    overflow: hidden; /* Prevents body scrolling, if desired */
+}
+
+#ttt {
+    overflow: auto; /* Use 'auto' to show scrollbars only when needed */
+    height: 50vh;
+    background-color: bisque;
+}

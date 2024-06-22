@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <pattern id="pattern-2" patternTransform="matrix(0.707107, -0.707109, 0.707105, 0.707107, 79.289605, 149.999785)" xlink:href="#pattern-1"/>
+    <pattern id="pattern-1" viewBox="0 0 50 200" patternUnits="userSpaceOnUse" preserveAspectRatio="none" width="100" height="100">
+      <rect x="325" y="100" width="50" height="100" style="stroke: rgb(0, 0, 0); stroke-width: 0px; fill: rgb(175, 175, 175);" transform="matrix(1, 0, 0, 0.9999999999999999, -325, -100)"/>
+      <rect x="325" y="200" width="50" height="100" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 0px;" transform="matrix(1, 0, 0, 0.9999999999999999, -325, -100)"/>
+    </pattern>
+    <pattern id="pattern-3" patternTransform="matrix(0.707107, -0.707109, 0.707105, 0.707107, 61.141594, 168.184325)" xlink:href="#pattern-1"/>
+  </defs>
+  <rect style="stroke: rgb(0, 0, 0); stroke-width: 0px; fill: url('#pattern-2');" width="300" height="300" rx="20" ry="20" transform="matrix(1, 0, 0, 0.9999999999999999, 0, 0)"/>
+  <path d="M 50 0 L 250 0 L 250 150 L 50 150 L 50 0 Z M 250 275 L 50 275 L 50 200 L 250 200 L 250 275 Z" style="stroke: rgb(0, 0, 0); stroke-width: 0px; fill: rgb(73, 157, 202);" transform="matrix(1, 0, 0, 0.9999999999999999, 0, 0)"/>
+  <rect style="stroke: rgb(0, 0, 0); stroke-width: 0px; fill: url('#pattern-3');" x="100" y="125" width="100" height="100" rx="30" ry="30" transform="matrix(1, 0, 0, 0.9999999999999999, 0, 0)"/>
+  <path d="M 167.33 191.138 C 172.669 201.712 169.999 207 159.324 207 L 140.676 207 C 130 207 127.33 201.712 132.669 191.138 L 140.667 175.291 C 135.414 172.154 131.901 166.447 131.901 159.928 C 131.901 150.026 140.004 142 150 142 C 159.995 142 168.098 150.026 168.098 159.928 C 168.098 166.447 164.585 172.154 159.332 175.291 L 167.33 191.138 Z" style="stroke: rgb(0, 0, 0); stroke-width: 0px; fill: rgb(93, 93, 93);" transform="matrix(1, 0, 0, 0.9999999999999999, 0, 0)"/>
+</svg>

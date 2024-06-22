@@ -1,0 +1,103 @@
+@keyframes openChestImage {
+    0% {
+        width : 10rem;
+        height: 10rem;
+        rotate: 0deg;
+    }
+
+    16% {
+        width : 10.5rem;
+        height: 10rem;
+        rotate: 5deg;
+    }
+
+    32% {
+        width : 10rem;
+        height: 10.5rem;
+        rotate: -5deg;
+    }
+
+    48% {
+        width : 11rem;
+        height: 9rem;
+        rotate: 7.5deg;
+    }
+
+    64% {
+        width : 9rem;
+        height: 11rem;
+        rotate: -7.5deg;
+    }
+
+    80% {
+        width : 11.5rem;
+        height: 8rem; 
+        rotate: 10deg;
+    }
+
+}
+
+@keyframes afterOpenChestImage {
+    0% {
+        width : 10rem;
+        height : 10rem;
+    }
+
+    10% {
+        width : 8rem;
+        height: 11.5rem; 
+        rotate: -10deg;
+    }
+
+    20% {
+        width : 11rem;
+        height: 9rem;
+        rotate: 7.5deg;
+    }
+
+    30% {
+        width : 9rem;
+        height: 11rem;
+        rotate: -7.5deg;
+    }
+    40% {
+        width : 10.5rem;
+        height: 10rem;
+        rotate: 5deg;
+    }
+
+    50% {
+        width : 10rem;
+        height: 10.5rem;
+        rotate: -5deg;
+    }
+
+    60% {
+        width : 10rem;
+        height : 10rem;
+        rotate: 0deg;
+    }
+}
+
+.chest img {
+    margin: 1rem 1rem;
+    width: 10rem;
+    height: 10rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.anticipate {
+    animation: openChestImage 0.75s forwards;
+}
+
+.release {
+    animation: afterOpenChestImage 0.75s forwards;
+
+}
+
+.chest {
+    width: 12rem;
+    height: 12rem;
+    animation: openChestDiv 2s infinite;
+}
