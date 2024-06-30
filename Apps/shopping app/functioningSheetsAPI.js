@@ -1,7 +1,8 @@
-const url = "https://script.google.com/macros/s/AKfycbxxNV_L1las9_LB0ueiQZ7sNHu5_KCziY1xGeKk1lkqzcI7H6x430DnQsGbPWv3oyq4Ug/exec";
+const url = "https://script.google.com/macros/s/AKfycby2uA9u5O2mKn6ar3TF2H5IRj0PAgzzABWZNKwAl7X7ssKkHOhdg5D2CcrozuphJKu_qw/exec";
 
-function sendData(formData, user) {
+function sendData(formData, user, row) {
     formData.user = user; // Add the user field to the formData
+    formData.row = row; // Add the row field to the formData
     var formDataString = encodeFormData(formData);
 
     console.log(formDataString);
@@ -38,8 +39,8 @@ function encodeFormData(data) {
         .join("&");
 }
 
-async function getData(value, user) {
-    var fullUrl = url + "?value=" + encodeURIComponent(value) + "&user=" + encodeURIComponent(user);
+async function getData(user) {
+    var fullUrl = url + "?user=" + encodeURIComponent(user); // Adjusted URL without 'value' parameter
     try {
         const response = await fetch(fullUrl);
         if (!response.ok) {
@@ -47,7 +48,6 @@ async function getData(value, user) {
         }
         return await response.json(); // Return the parsed JSON data
     } catch (error) {
-        console.error(error);
-        return "No matches found";
+        return "eror?"
     }
 }
