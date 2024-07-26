@@ -1,0 +1,33 @@
+#preview {
+    position: fixed;
+    top: 100px;
+    left: 100px;
+    width: 250px;
+    height: 225px;
+    background-color: white;
+    box-shadow: 0px 0px 15px black;
+}
+
+#preview #sideText {
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    background-color: rgb(118, 91, 69);
+    text-align: center;
+}
+
+#preview #sideText img {
+    height: 200px;
+    margin-top: 12.5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#preview #thumbnail {
+    position: absolute;
+    left: 59px;
+    width: 191px;
+    height: 225px;
+    object-fit: cover;
+    object-position: right;
+}
