@@ -1,0 +1,67 @@
+/* Disable image selection and dragging */
+img {
+    user-select: none; /* Prevents text selection on the image */
+    -webkit-user-select: none; /* For WebKit browsers like Chrome and Safari */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For Internet Explorer and Edge */
+    
+    /* Prevent image dragging */
+    -webkit-user-drag: none; /* For WebKit browsers */
+    user-drag: none; /* For browsers that support this property */
+    
+    cursor: default; /* Ensures cursor remains default */
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+
+table {
+    width: auto; /* Set to auto to avoid stretching the table */
+    border-collapse: collapse; /* Ensures there are no gaps between cells */
+    border-radius: 15px;
+}
+
+table tr {
+    margin: none;
+    padding: none;
+}
+
+table tr td {
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0; /* Hide text size influence */
+    font-weight: 700;
+    border: 1px solid black; /* Use border instead of outline */
+    box-sizing: border-box; /* Includes border in the width and height */
+    padding: 0px;
+}
+
+table tr td img {
+    width: 16px;
+}
+
+
+#tileSelector {
+    position: fixed;
+    width: 90vw;
+    height: 10vh;
+    background-color: rgb(28, 28, 28);
+    border-radius: 10px;
+    left: 5vw;
+    bottom: 5vh;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+#tileSelector img {
+    height: 90%;
+}
+
+#tileSelector img.selected {
+    border: 2px solid rgba(127, 223, 255, 0.434); /* Use border instead of outline */
+    box-sizing: border-box; /* Includes border in the width and height */
+}
