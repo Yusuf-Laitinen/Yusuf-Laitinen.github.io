@@ -10,8 +10,15 @@
     <div id="tileSelector">
     </div>
     <div id="fileMenu">
-        <button onclick="handleExport()">Export</button>
-        <button onclick="generateGrid(Import(prompt('Paste Lua Table')))">Import</button>
+        <div id="file">
+            <h3>File</h3>
+            <button onclick="handleExport()">Export</button>
+            <button onclick="generateGrid(Import(prompt('Paste Lua Table')))">Import</button>
+        </div>
+        <div id="tabs">
+            <h3 class="current">1</h3>
+        </div>
+        <h3 onclick="addLayer()" id="add">+</h3>
     </div>
     <script src="script.js"></script>
 </body>

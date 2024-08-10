@@ -193,3 +193,9 @@ function handleExport() {
         copyToClipboard(luaTable);
     }
 }
+
+function addLayer() {
+    tab = document.createElement("h3")
+    tab.innerHTML = 
+    document.getElementById("tabs").appendChild(tab)
+}
