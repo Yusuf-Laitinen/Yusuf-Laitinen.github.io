@@ -1,0 +1,56 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body {
+    padding: 0px;
+    margin: 0px;
+}
+
+#question {
+    margin: 5vw 5vw;
+    width: 90vw;
+    height: 90vw;
+    box-sizing: border-box;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px black;
+}
+
+#options { 
+    margin: 5vw 5vw;
+    width: 90vw;
+    box-sizing: border-box;
+    object-fit: contain;
+    border-radius: 5px;
+    border-collapse: collapse; /* Ensures borders are collapsed with no gaps */
+}
+
+#options tr td {
+    padding: 2vh 0px 2vh 0px;
+    margin: 0px;
+    text-align: center;
+    border: 2px solid black;
+    box-sizing: border-box;
+    transition: background-color 0.2s;
+    font-size: large;
+    font-weight: 600;
+}
+
+
+#options tr td.Selected {
+    background-color: rgba(162, 189, 190, 0.657);
+    transition: background-color 0.2s;
+
+}
+
+#options tr td.Confirmed {
+    background-color: rgba(0, 255, 157, 0.657);
+    transition: background-color 0.2s;
+
+}
+
+#options tr td.Incorrect {
+    background-color: rgba(255, 0, 0, 0.657);
+    transition: background-color 0.2s;
+}
