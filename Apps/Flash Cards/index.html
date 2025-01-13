@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta
+			name="apple-mobile-web-app-status-bar-style"
+			content="black-translucent"
+		/>
+
+		<link
+			rel="apple-touch-startup-image"
+			media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
+			href="splash_screens/10.2__iPad_landscape.png"
+		/>
+		<link
+			rel="apple-touch-startup-image"
+			media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+			href="splash_screens/10.2__iPad_portrait.png"
+		/>
+		<link
+			rel="apple-touch-startup-image"
+			media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+			href="splash_screens/iPhone_8__iPhone_7__iPhone_6s__iPhone_6__4.7__iPhone_SE_portrait.png"
+		/>
+
+		<link rel="stylesheet" href="style.css" />
+
+		<meta name="format-detection" content="telephone=no" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<title>Yusuf's Flashcards</title>
+	</head>
+	<body>
+		<div id="loader" style="display: none">
+			<img src="icons/load.png" />
+		</div>
+		<div id="subject-selection">
+			<h1>Select a Subject</h1>
+			<div id="subjects"></div>
+		</div>
+		<div id="quiz" style="display: none">
+			<h2 id="question"></h2>
+			<div id="options"></div>
+			<div id="button-container">
+				<button id="prev-question">Previous</button>
+				<button id="next-question">Next</button>
+				<button id="stop-quiz">Stop</button>
+			</div>
+		</div>
+
+		<div id="results" style="display: none">
+			<h2>Quiz Results</h2>
+			<p id="accuracy"></p>
+			<div id="review"></div>
+		</div>
+		<script src="sheetsAPI.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
