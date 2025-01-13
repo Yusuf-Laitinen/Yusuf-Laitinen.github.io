@@ -191,3 +191,13 @@ body {
 .incorrect {
     background-color: red;
 }  
+
+#review {
+    overflow-y: auto; /* Vertical scrolling only */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    max-height: 80vh; /* Adjust the height as needed, 60% of the viewport height */
+    margin: 10px; /* Optional: Add spacing around the element */
+    padding: 10px; /* Optional: Add inner spacing for better aesthetics */
+    border: 1px solid #ccc; /* Optional: Add a border to visually define the section */
+    background-color: #f9f9f9; /* Optional: Light background for better readability */
+}
