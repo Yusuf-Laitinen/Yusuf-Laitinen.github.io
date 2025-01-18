@@ -45,6 +45,17 @@ async function startQuiz(subject) {
     loader.style.display = "none";
 }
 
+function isURL(string) {
+    try {
+        // Attempt to create a URL object
+        new URL(string);
+        return true;
+    } catch (_) {
+        // If an error is thrown, the string is not a valid URL
+        return false;
+    }
+}
+
 function showQuestion() {
     if (autoNavigationTimer) clearTimeout(autoNavigationTimer); // Clear any pending auto-navigation
 
@@ -52,7 +63,11 @@ function showQuestion() {
     const optionsDiv = document.getElementById("options");
     const questionElement = document.getElementById("question");
 
-    questionElement.textContent = questionObj.Question;
+    if (isURL(questionObj.Question)) {
+        questionElement.innerHTML = `<img src="${questionObj.Question}" style="max-width: 100%">`;
+    } else {
+        questionElement.textContent = questionObj.Question;
+    }
     optionsDiv.innerHTML = ""; // Clear previous options
 
     if (questionObj.selected === null) {
@@ -196,8 +211,8 @@ function stopQuiz() {
         `;
         reviewDiv.appendChild(reviewItem);
     });
-    
-    
+
+
 
     // Add home button
     const homeButton = document.createElement("button");
