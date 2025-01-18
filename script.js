@@ -23,7 +23,7 @@ window.onload = function() {
 
         // Check if the image exists and fall back to _src/missing.png if not
         img.onerror = function() {
-            img.src = getParentFolder(window.location.href) + "/_src/missing.png"; // Fallback image
+            img.src = getParentFolder(window.location.href) + "/src/missing.png"; // Fallback image
         };
 
         // Set the label text
