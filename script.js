@@ -1,8 +1,9 @@
-function replaceIndexWithIcon(path) {
+function getParentFolder(path) {
     // Assuming path is in the format '/Apps/something/apple-touch-icon'
-    const iconPath = path.replace("index.html", "apple-touch-icon.png");
+    const iconPath = path.replace("index.html", "");
     return iconPath;
 }
+
 
 function extractMiddlePart(path) {
     return path.replace('/Apps/', '').replace('/index.html', '');
@@ -17,12 +18,12 @@ window.onload = function() {
         let label = document.createElement("p");
 
         // Set the image source, applying the replace function
-        let iconPath = replaceIndexWithIcon(child.id);
+        let iconPath = getParentFolder(child.id) + "apple-touch-icon.png";
         img.src = iconPath;
 
         // Check if the image exists and fall back to _src/missing.png if not
         img.onerror = function() {
-            img.src = "https://yusuf-laitinen.github.io/_src/missing.png"; // Fallback image
+            img.src = getParentFolder(window.location.href) + "/_src/missing.png"; // Fallback image
         };
 
         // Set the label text
