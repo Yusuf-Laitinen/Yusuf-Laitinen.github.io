@@ -39,10 +39,8 @@ function discardFlaggedQuestions(questions) {
 }
 
 function isURL(str) {
-    const pattern = /^(https?:\/\/)?([a-z0-9.-]+)+(:[0-9]+)?(\/[^\s]*)?$/i;
-    return pattern.test(str);
+    return str.startsWith("http");
 }
-
 function _startLoadingBar() {
     document.getElementById("loadingBar").className = "load50"
 }
