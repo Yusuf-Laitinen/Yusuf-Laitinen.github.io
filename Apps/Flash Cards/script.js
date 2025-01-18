@@ -269,11 +269,19 @@ function stopQuiz() {
         const reviewItem = document.createElement("div");
         reviewItem.className = "review-item";
         reviewItem.id = "Q" + (questionIndex + 1);
-        reviewItem.innerHTML = `
-          <p><strong>Q${questionIndex + 1}:</strong> ${question.Question}</p>
-          <p><strong>Your Answer:</strong> <span style="color: red">${selected}</span></p>
-          <p><strong>Correct Answer:</strong> <span style="color: green">${question.Answer}</span></p>
-        `;
+        if (isURL(question.Question)) {
+            reviewItem.innerHTML = `
+            <p><strong>Q${questionIndex + 1}:</strong> <img src="${question.Question}" style="max-width: 100%;"></p>
+            <p><strong>Your Answer:</strong> <span style="color: red">${selected}</span></p>
+            <p><strong>Correct Answer:</strong> <span style="color: green">${question.Answer}</span></p>
+            `;
+        } else {
+            reviewItem.innerHTML = `
+            <p><strong>Q${questionIndex + 1}:</strong> ${question.Question}</p>
+            <p><strong>Your Answer:</strong> <span style="color: red">${selected}</span></p>
+            <p><strong>Correct Answer:</strong> <span style="color: green">${question.Answer}</span></p>
+            `;
+        }
         reviewDiv.appendChild(reviewItem);
     });
 
