@@ -1,5 +1,6 @@
 // Global Variables
 let questions = [];
+let originalQuestions = [];
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let totalQuestions = 0;
@@ -7,53 +8,109 @@ let answers = [];
 let wrongAnswers = [];
 let autoNavigationTimer = null;
 
+let _subject = "";
+
 let loader = document.getElementById("loader");
 
-// Initialize App
-document.addEventListener("DOMContentLoaded", () => {
-    loadSubjects();
-});
+function _compare(objectA, objectB) {
+
+    if (objectA.ID === objectB.ID) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function _findIndex(questions, question) {
+    for (let i = 0; i < questions.length; i++) {
+        if (_compare(questions[i], question)) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+
+function discardFlaggedQuestions(questions) {
+    //function filters list and discards flagged questions
+    let newQuestions = JSON.parse(JSON.stringify(questions));
+    newQuestions = newQuestions.filter(question => !question.Flagged || question.Flagged === "");
+    return newQuestions;
+}
+
+function isURL(str) {
+    const pattern = /^(https?:\/\/)?([a-z0-9.-]+)+(:[0-9]+)?(\/[^\s]*)?$/i;
+    return pattern.test(str);
+}
+
+function _startLoadingBar() {
+    document.getElementById("loadingBar").className = "load50"
+}
+
+function _endLoadingBar() {
+    document.getElementById("loadingBar").className = "load100"
+}
 
 async function loadSubjects() {
+    _startLoadingBar()
     loader.style.display = "block";
     const subjectsDiv = document.getElementById("subjects");
+    subjectsDiv.innerHTML = "";
     const subjects = await getSheetNames();
     subjects.forEach((subject) => {
         const button = document.createElement("button");
         button.textContent = subject;
-        button.addEventListener("click", () => startQuiz(subject));
+        button.addEventListener("click", function () {
+            startQuiz(subject)
+            _subject = subject
+        });
         subjectsDiv.appendChild(button);
     });
     loader.style.display = "none";
+    _endLoadingBar()
 }
 
 async function startQuiz(subject) {
+    _startLoadingBar()
     loader.style.display = "block";
     questions = await getData(subject);
     questions.forEach((q) => {
         q.selected = null; // Track selected answers
     });
+    originalQuestions = JSON.parse(JSON.stringify(questions));  // Make a deep copy
+    questions = discardFlaggedQuestions(questions);
     currentQuestionIndex = 0;
     correctAnswers = 0;
     totalQuestions = questions.length;
     wrongAnswers = [];
     answers = [];
+
     document.getElementById("subject-selection").style.display = "none";
-    document.getElementById("quiz").style.display = "block";
     document.getElementById("results").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+
     showQuestion();
     loader.style.display = "none";
+    _endLoadingBar()
 }
 
-function isURL(string) {
-    try {
-        // Attempt to create a URL object
-        new URL(string);
-        return true;
-    } catch (_) {
-        // If an error is thrown, the string is not a valid URL
-        return false;
-    }
+async function flagQuestion() {
+    _startLoadingBar()
+
+    // Disable the flag button
+    document.getElementById("flag-question").disabled = true;
+
+    let question = JSON.parse(JSON.stringify(questions));  // Make a deep copy
+    question[currentQuestionIndex].Flagged = true; // Flag the question
+    delete question.trueIndex;
+    await sendData(question[currentQuestionIndex], _subject, questions[currentQuestionIndex].ID + 2);
+
+    questions = discardFlaggedQuestions(question);
+
+    currentQuestionIndex--;
+    // Move to the next question
+    moveToNextQuestion();
+    _endLoadingBar()
 }
 
 function showQuestion() {
@@ -63,16 +120,18 @@ function showQuestion() {
     const optionsDiv = document.getElementById("options");
     const questionElement = document.getElementById("question");
 
+    // Display either text or image question
     if (isURL(questionObj.Question)) {
         questionElement.innerHTML = `<img src="${questionObj.Question}" style="max-width: 100%">`;
     } else {
         questionElement.textContent = questionObj.Question;
     }
+
     optionsDiv.innerHTML = ""; // Clear previous options
 
     if (questionObj.selected === null) {
-        // Unanswered question: show options as buttons
-        const options = [questionObj.Answer, ...JSON.parse(questionObj.Decoys)].sort(() => Math.random() - 0.5);
+        // Unanswered question: show options as buttons without randomizing
+        const options = [questionObj.Answer, ...JSON.parse(questionObj.Decoys)];
         options.forEach((option) => {
             const button = document.createElement("button");
             button.textContent = option;
@@ -81,7 +140,7 @@ function showQuestion() {
         });
     } else {
         // Answered question: show text options with highlights
-        const options = [questionObj.Answer, ...JSON.parse(questionObj.Decoys)].sort(() => Math.random() - 0.5);
+        const options = [questionObj.Answer, ...JSON.parse(questionObj.Decoys)];
         options.forEach((option) => {
             const text = document.createElement("p");
             text.className = "none"
@@ -90,7 +149,6 @@ function showQuestion() {
             if (option === questionObj.Answer) text.className = "correct"; // Correct answer
             optionsDiv.appendChild(text);
         });
-
     }
 
     updateNavigationButtons();
@@ -128,7 +186,16 @@ function checkAnswer(selected, questionObj) {
     }, 2000);
 }
 
-
+function moveToNextQuestion() {
+    document.getElementById("flag-question").disabled = false; // Enable the flag button
+    // Skip flagged questions by moving to the next unflagged one
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        showQuestion();
+    } else {
+        endQuiz();
+    }
+}
 
 function updateNavigationButtons() {
     const prevButton = document.getElementById("prev-question");
@@ -212,8 +279,6 @@ function stopQuiz() {
         reviewDiv.appendChild(reviewItem);
     });
 
-
-
     // Add home button
     const homeButton = document.createElement("button");
     homeButton.textContent = "Home";
@@ -224,4 +289,16 @@ function stopQuiz() {
     reviewDiv.appendChild(homeButton);
 }
 
+function backToHome() {
+    document.getElementById("quizMenu").style.display = "none";
+    document.getElementById("homeMenu").style.display = "block";
+}
+
+function doQuiz() {
+    document.getElementById("homeMenu").style.display = "none";
+    document.getElementById("quizMenu").style.display = "block";
+    loadSubjects();
+}
+
 document.getElementById("stop-quiz").addEventListener("click", stopQuiz);
+document.getElementById("flag-question").addEventListener("click", flagQuestion);
