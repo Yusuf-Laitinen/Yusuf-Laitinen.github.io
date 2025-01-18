@@ -38,11 +38,6 @@ button {
     line-height: 5vh;
 }
 
-button:disabled {
-    background-color: #00000000;
-    color: gray;
-}
-
 body {
     overflow: hidden;
 }
@@ -181,6 +176,10 @@ body {
     text-align: center; /* Centers the text within the button */
 }
 
+#button-container button:disabled {
+    background-color: #00000000;
+    color: gray;
+}
 
 #options p {
     text-align: center;
@@ -202,11 +201,12 @@ body {
 }
 
 .correct {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.445);
+    box-sizing: border-box;
 }
 
 .incorrect {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.462);
 }  
 
 #review {
