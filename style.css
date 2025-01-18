@@ -1,0 +1,45 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Base grid styling */
+.grid-container {
+    display: grid;
+    gap: 10px;
+    /* Space between items */
+}
+
+/* 4 columns on small screens (e.g., phones) */
+.grid-container {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* 8 columns on larger screens (e.g., computers) */
+@media (min-width: 768px) {
+
+    /* Adjust breakpoint as needed */
+    .grid-container {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* Optional: Grid item styling for visualization */
+.grid-container * {
+    text-align: center;
+    padding: 20px;
+}
+
+.grid-container * img {
+    border-radius: 25px;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.grid-container * p {
+    font-size: 25px;
+    font-weight: bold;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+}
