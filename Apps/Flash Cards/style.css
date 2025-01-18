@@ -232,12 +232,10 @@ body {
 @keyframes loadHalf {
     0% {
         display: block;
-        opacity: 1;
         width: 0vw;
     }
     100% {
         display: block;
-        opacity: 1;
         width: 50vw;
     }
 }
@@ -245,17 +243,14 @@ body {
 @keyframes loadFull {
     0% {
         display: block;
-        opacity: 1;
         width: 50vw;
     }
     80% {
         display: block;
-        opacity: 1;
         width: 100vw;
     }
 
     99% {
-        opacity: 0;
         display: block;
     }
     100% {
