@@ -1,0 +1,34 @@
+const moves = ['bench-press', 'squat', 'deadlift', 'shoulder-press', 'dumbbell-bench-press', 'pull-ups', 'dumbbell-curl', 'barbell-curl', 'push-ups', 'sled-leg-press', 'dumbbell-shoulder-press', 'bent-over-row', 'incline-bench-press', 'incline-dumbbell-bench-press', 'lat-pulldown', 'dips', 'front-squat', 'hex-bar-deadlift', 'power-clean', 'dumbbell-lateral-raise', 'hip-thrust', 'leg-extension', 'romanian-deadlift', 'chin-ups', 'military-press', 'horizontal-leg-press', 'sumo-deadlift', 'dumbbell-row', 'chest-press', 'tricep-pushdown', 'hammer-curl', 'seated-cable-row', 'clean-and-jerk', 'snatch', 'hack-squat', 'close-grip-bench-press', 'seated-leg-curl', 'seated-dumbbell-shoulder-press', 'ez-bar-curl', 'dumbbell-bulgarian-split-squat', 'machine-chest-fly', 'seated-shoulder-press', 'machine-shoulder-press', 'lying-tricep-extension', 'clean', 'barbell-shrug', 'push-press', 'goblet-squat', 'dumbbell-fly', 'lying-leg-curl', 'decline-bench-press', 't-bar-row', 'preacher-curl', 'machine-calf-raise', 'dumbbell-shrug', 'tricep-rope-pushdown', 'dumbbell-lunge', 'clean-and-press', 'dumbbell-tricep-extension', 'smith-machine-bench-press', 'rack-pull', 'cable-bicep-curl', 'pendlay-row', 'bodyweight-squat', 'box-squat', 'machine-row', 'dumbbell-romanian-deadlift', 'dumbbell-concentration-curl', 'incline-dumbbell-curl', 'bulgarian-split-squat', 'vertical-leg-press', 'upright-row', 'dumbbell-front-raise', 'sit-ups', 'seated-calf-raise', 'cable-lateral-raise', 'smith-machine-squat', 'tricep-extension', 'arnold-press', 'cable-fly', 'hang-clean', 'stiff-leg-deadlift', 'muscle-ups', 'hip-abduction', 'floor-press', 'zercher-squat', 'good-morning', 'face-pull', 'dumbbell-pullover', 'lying-dumbbell-tricep-extension', 'wrist-curl', 'incline-dumbbell-fly', 'barbell-lunge', 'dumbbell-floor-press', 'seated-dip-machine', 'dumbbell-reverse-fly', 'hip-adduction', 'chest-supported-dumbbell-row', 'cable-crunch', 'machine-seated-crunch', 'machine-bicep-curl', 'overhead-squat', 'dumbbell-squat', 'barbell-calf-raise', 'dumbbell-tricep-kickback', 'power-snatch', 'thruster', 'close-grip-lat-pulldown', 'reverse-barbell-curl', 'push-jerk', 'machine-reverse-fly', 'split-squat', 'crunches', 'paused-bench-press', 'cable-overhead-tricep-extension', 'decline-dumbbell-bench-press', 'one-arm-push-ups', 'dumbbell-calf-raise', 'strict-curl', 'reverse-wrist-curl', 'one-arm-cable-bicep-curl', 'dumbbell-deadlift', 'machine-tricep-extension', 'dumbbell-wrist-curl', 'reverse-grip-bench-press', 'cable-pull-through', 'standing-leg-curl', 'barbell-reverse-lunge', 'diamond-push-ups', 'landmine-squat', 'reverse-grip-lat-pulldown', 'barbell-glute-bridge', 'single-leg-press', 'sled-press-calf-raise', 'one-arm-dumbbell-preacher-curl', 'neutral-grip-pull-ups', 'single-leg-squat', 'neck-curl', 'seated-dumbbell-tricep-extension', 'belt-squat', 'deficit-deadlift', 'machine-lateral-raise', 'straight-arm-pulldown', 'dumbbell-upright-row', 'safety-bar-squat', 'back-extension', 'bent-over-dumbbell-row', 'pistol-squat', 'close-grip-dumbbell-bench-press', 'handstand-push-ups', 'behind-the-neck-press', 'yates-row', 'cable-reverse-fly', 'pause-squat', 'barbell-front-raise', 'barbell-hack-squat', 'machine-back-extension', 'bench-pin-press', 'bench-pull', 'burpees', 'single-leg-romanian-deadlift', 'log-press', 'sumo-squat', 'hang-power-clean', 'dumbbell-side-bend', 'split-jerk', 'dumbbell-snatch', 'incline-hammer-curl', 'clean-high-pull', 'snatch-deadlift', 'cable-woodchopper', 'cable-kickback', 'barbell-pullover', 'bodyweight-calf-raise', 'clean-pull', 'hanging-leg-raise', 'one-arm-pull-ups', 'spider-curl', 'pause-deadlift', 'landmine-press', 'jm-press', 'reverse-grip-tricep-pushdown', 'neck-extension', 'single-leg-deadlift', 'wide-grip-bench-press', 'muscle-snatch', 'inverted-row', 'zottman-curl', 'lunge', 'jefferson-deadlift', 'seated-dumbbell-curl', 'dumbbell-bench-pull', 'renegade-row', 'z-press', 'russian-twist', 'decline-push-up', 'viking-press', 'glute-bridge', 'tate-press', 'shoulder-pin-press', 'lying-leg-raise', 'pin-squat', 'one-arm-lat-pulldown', 'snatch-pull', 'ring-dips', 'dumbbell-z-press', 'bench-dips', 'cheat-curl', 'dumbbell-reverse-wrist-curl', 'wall-ball', 'walking-lunge', 'dumbbell-front-squat', 'one-arm-seated-cable-row', 'decline-sit-up', 'cable-hammer-curl', 'close-grip-incline-bench-press', 'hanging-knee-raise', 'dumbbell-split-squat', 'ab-wheel-rollout', 'reverse-lunge', 'dumbbell-reverse-curl', 'squat-jump', 'cable-upright-row', 'zercher-deadlift', 'toes-to-bar', 'nordic-hamstring-curl', 'machine-shrug', 'one-arm-landmine-press', 'dumbbell-external-rotation', 'pike-push-up', 'decline-crunch', 'hex-bar-shrug', 'jumping-jack', 'dumbbell-push-press', 'incline-push-up', 'dumbbell-face-pull', 'close-grip-push-up', 'single-leg-dumbbell-deadlift', 'smith-machine-shrug', 'sissy-squat', 'dumbbell-incline-y-raise', 'half-squat', 'archer-push-ups', 'bicycle-crunch', 'single-leg-seated-calf-raise', 'dumbbell-clean-and-press', 'cable-shrug', 'cable-leg-extension', 'glute-ham-raise', 'barbell-power-shrug', 'bent-arm-barbell-pullover', 'cable-external-rotation', 'reverse-crunches', 'meadows-row', 'side-lunge', 'ring-muscle-ups', 'one-arm-pulldown', 'behind-the-back-barbell-shrug', 'spoto-press', 'hang-snatch', 'dumbbell-thruster', 'glute-kickback', 'decline-dumbbell-fly', 'dumbbell-high-pull', 'flutter-kicks', 'donkey-calf-raise', 'mountain-climbers', 'behind-the-back-deadlift', 'dumbbell-hang-clean', 'high-pulley-crunch', 'dumbbell-walking-calf-raise', 'clap-pull-up', 'standing-cable-crunch', 'superman', 'side-leg-raise', 'reverse-hyperextension', 'overhead-cable-curl', 'side-crunch', 'roman-chair-side-bend', 'floor-hip-abduction', 'jefferson-squat', 'hip-extension', 'squat-thrust', 'incline-cable-curl', 'scissor-kicks', 'lying-cable-curl', 'floor-hip-extension']
+
+function formatName(name) {
+    return name.replace(/-/g, ' ');
+}
+
+function getImage(exercise) {
+    // Find the first move that includes the exercise as a substring
+    const match = moves.find(move => move.toLowerCase().includes(exercise.toLowerCase()));
+    if (match) {
+        document.getElementById("name").innerText = formatName(match);
+        return `moves/${match}.jpg`;
+    } else {
+        return `moves/missing.jpg`;
+    }
+}
+
+document.getElementById("search").addEventListener("focus", () => {
+    document.getElementById("search").innerText = "";
+    document.getElementById("search").classsearch = "focused"
+})
+
+document.getElementById("search").addEventListener("blur", () => {
+    document.getElementById("search").classsearch = "unfocused"
+    if (document.getElementById("search").innerText == "") {
+        document.getElementById("search").innerText = "Search";
+    }
+
+});
+
+document.getElementById("search").addEventListener("input", () => {
+    const input = document.getElementById("search").innerText.trim();
+    document.getElementById("preview").src = getImage(input);
+});
