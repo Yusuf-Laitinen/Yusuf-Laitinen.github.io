@@ -11,7 +11,7 @@ function getImage(exercise) {
         document.getElementById("name").innerText = formatName(match);
         return `moves/${match}.jpg`;
     } else {
-        return `moves/missing.jpg`;
+        return `apple-touch-icon.png`;
     }
 }
 
