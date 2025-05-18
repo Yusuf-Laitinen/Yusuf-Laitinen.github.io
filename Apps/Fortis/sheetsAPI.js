@@ -1,13 +1,14 @@
-const url = "https://script.google.com/macros/s/AKfycbxxNV_L1las9_LB0ueiQZ7sNHu5_KCziY1xGeKk1lkqzcI7H6x430DnQsGbPWv3oyq4Ug/exec";
+const url = "https://script.google.com/macros/s/AKfycbzxrfsobUUpqAwURdMmbxwJnr_IoO6ySxZxsyrWevu9ErbvslZbbV33kjQlJGDOwbcKgg/exec";
 
-function sendData(formData, user) {
+async function sendData(formData, user, row) {
     formData.user = user; // Add the user field to the formData
-    var formDataString = encodeFormData(formData);
+    formData.row = row; // Add the row field to the formData
+    var formDataString = _encodeFormData(formData);
 
     console.log(formDataString);
 
     // Send a POST request to your Google Apps Script
-    fetch(url, {
+    return fetch(url, {
         method: "POST",
         body: formDataString,
         headers: {
@@ -17,29 +18,26 @@ function sendData(formData, user) {
     .then(function (response) {
         // Check if the request was successful
         if (response.ok) {
-            return response.text(); // Read the response as text
+            return response.text();
         } else {
             throw new Error("Failed to submit the form.");
         }
     })
-    .then(function (data) {
-        console.log("SUCCESS", data); // Log the response data
-    })
     .catch(function (error) {
         // Handle errors, you can display an error message here
         console.error(error);
+        throw error; // Re-throw the error to be caught by the caller
     });
 }
-
 // Helper function to encode form data in URL-encoded format
-function encodeFormData(data) {
+function _encodeFormData(data) {
     return Object.keys(data)
         .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
         .join("&");
 }
 
-async function getData(value, user) {
-    var fullUrl = url + "?value=" + encodeURIComponent(value) + "&user=" + encodeURIComponent(user);
+async function getData(user) {
+    var fullUrl = url + "?user=" + encodeURIComponent(user); // Adjusted URL without 'value' parameter
     try {
         const response = await fetch(fullUrl);
         if (!response.ok) {
@@ -48,6 +46,20 @@ async function getData(value, user) {
         return await response.json(); // Return the parsed JSON data
     } catch (error) {
         console.error(error);
-        return "No matches found";
+        return "No data found"; // Adjusted error message
+    }
+}
+// New function to get all sheet names
+async function getSheetNames() {
+    var fullUrl = url + "?action=getSheetNames"; // URL with the action parameter
+    try {
+        const response = await fetch(fullUrl);
+        if (!response.ok) {
+            throw new Error("Failed to fetch sheet names");
+        }
+        return await response.json(); // Return the array of sheet names
+    } catch (error) {
+        console.error(error);
+        return []; // Return an empty array on error
     }
 }
