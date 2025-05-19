@@ -1,4 +1,4 @@
-var confident = 80;
+var confident = parseInt(window.prompt("How confident are you in your knowledge of the quotes? (0-100)", 50), 10);
 var qoutes = []
 var qouteIndex = 0;
 
