@@ -21,9 +21,9 @@ window.onload = function() {
         let iconPath = getParentFolder(child.id) + "apple-touch-icon.png";
         img.src = iconPath;
 
-        // Check if the image exists and fall back to _src/missing.png if not
+        // Check if the image exists and fall back to _src/missing.svg if not
         img.onerror = function() {
-            img.src = getParentFolder(window.location.href) + "/src/missing.png"; // Fallback image
+            img.src = getParentFolder(window.location.href) + "/src/missing.svg"; // Fallback image
         };
 
         // Set the label text
