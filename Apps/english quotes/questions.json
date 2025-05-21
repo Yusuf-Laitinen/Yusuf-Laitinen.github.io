@@ -1,0 +1,69 @@
+{
+  "questions": [
+    {
+      "answer": "Angle at the centre is twice the angle at the circumference",
+      "decoys": ["Angles in a triangle add to 180°", "Corresponding angles are equal", "Alternate angles are equal"],
+      "image": "questions/1.png"
+    },
+    {
+      "answer": "Angle in a semicircle is 90°",
+      "decoys": ["Angle at the centre is twice the angle at the circumference", "Alternate angles are equal", "Vertically opposite angles are equal"],
+      "image": "questions/2.png"
+    },
+    {
+      "answer": "Perpendicular from the centre to a chord bisects the chord",
+      "decoys": ["Angles in the same segment are equal", "Alternate segment theorem", "Equal chords have equal angles"],
+      "image": "questions/3.png"
+    },
+    {
+      "answer": "Opposite angles in a cyclic quadrilateral add to 180°",
+      "decoys": ["Angles in a quadrilateral add to 360°", "Angle between a tangent and a radius is 90°", "Base angles in an isosceles triangle are equal"],
+      "image": "questions/4.png"
+    },
+    {
+      "answer": "Right-hand rule (magnetic field from current)",
+      "decoys": ["Fleming’s left-hand rule", "Angle at the centre is twice the angle at the circumference", "Alternate angles are equal"],
+      "image": "questions/5.png"
+    },
+    {
+      "answer": "Fleming’s left-hand rule",
+      "decoys": ["Right-hand rule", "Angle in a semicircle is 90°", "Corresponding angles are equal"],
+      "image": "questions/6.png"
+    },
+    {
+      "answer": "Angle between a tangent and a radius is 90°",
+      "decoys": ["Angles in the same segment are equal", "Alternate segment theorem", "Equal chords subtend equal arcs"],
+      "image": "questions/7.png"
+    },
+    {
+      "answer": "Vertically opposite angles are equal",
+      "decoys": ["Alternate angles are equal", "Corresponding angles are equal", "Angles in a triangle add to 180°"],
+      "image": "questions/8.png"
+    },
+    {
+      "answer": "Alternate segment theorem",
+      "decoys": ["Equal chords have equal angles", "Angle between a tangent and a radius is 90°", "Angle in a semicircle is 90°"],
+      "image": "questions/9.png"
+    },
+    {
+      "answer": "Angles in the same segment are equal",
+      "decoys": ["Angle at the centre is twice the angle at the circumference", "Vertically opposite angles are equal", "Alternate angles are equal"],
+      "image": "questions/10.png"
+    },
+    {
+      "answer": "Alternate angles are equal",
+      "decoys": ["Corresponding angles are equal", "Co-interior angles add to 180°", "Angles in the same segment are equal"],
+      "image": "questions/11.png"
+    },
+    {
+      "answer": "Equal chords have equal angles / subtend equal arcs",
+      "decoys": ["Alternate segment theorem", "Angles at a point add to 360°", "Opposite angles in a cyclic quadrilateral"],
+      "image": "questions/12.png"
+    },
+    {
+      "answer": "Corresponding angles are equal",
+      "decoys": ["Alternate angles are equal", "Vertically opposite angles are equal", "Exterior angle of a triangle"],
+      "image": "questions/13.png"
+    }
+  ]
+}
