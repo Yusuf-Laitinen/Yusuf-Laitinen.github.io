@@ -1,4 +1,4 @@
-const url = "https://script.google.com/macros/s/AKfycbzxrfsobUUpqAwURdMmbxwJnr_IoO6ySxZxsyrWevu9ErbvslZbbV33kjQlJGDOwbcKgg/exec";
+const url = "https://script.google.com/macros/s/AKfycbyLG4FaZSXTuKoorxq4IgbOfZtnvIVwNcRXVyUFzcb6k14l0oVLxGPWg88ZzfgC3Y6wSA/exec";
 
 async function sendData(formData, user, row) {
     formData.user = user; // Add the user field to the formData

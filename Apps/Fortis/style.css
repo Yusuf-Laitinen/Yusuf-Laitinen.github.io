@@ -1,18 +1,145 @@
-body {
-    background-color: blue;
-    padding-top: 5px;
-    padding-left: 16px; /* Fallback for padding-left */
-    padding-right: 16px; /* Fallback for padding-right */
-    padding-bottom: env(safe-area-inset-bottom);
+* {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-html {
-    background-color: aqua;
-    overflow: hidden; /* Prevents body scrolling, if desired */
+#workouts {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    padding: 10px 10px;
+    box-sizing: border-box;
 }
 
-#ttt {
-    overflow: auto; /* Use 'auto' to show scrollbars only when needed */
-    height: 50vh;
-    background-color: bisque;
+#workouts button {
+    width: 100%;
+    margin-bottom: 10px;
+    outline: none;
+    border: none;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 20px;
+    font-size: 20px;
+    color: black;
+    background-color: f0f0f0;
+}
+
+@keyframes spin {
+    0.0%{
+        rotate: 0deg;
+    }
+    8.333333333333334%{
+        rotate: 0deg;
+    }
+
+
+    8.433333333333334%{
+        rotate: 30deg;
+    }
+    16.666666666666668%{
+        rotate: 30deg;
+    }
+
+
+    16.76666666666667%{
+        rotate: 60deg;
+    }
+    25.0%{
+        rotate: 60deg;
+    }
+
+
+    25.1%{
+        rotate: 90deg;
+    }
+    33.333333333333336%{
+        rotate: 90deg;
+    }
+
+
+    33.43333333333334%{
+        rotate: 120deg;
+    }
+    41.66666666666667%{
+        rotate: 120deg;
+    }
+
+
+    41.76666666666667%{
+        rotate: 150deg;
+    }
+    50.0%{
+        rotate: 150deg;
+    }
+
+
+    50.1%{
+        rotate: 180deg;
+    }
+    58.333333333333336%{
+        rotate: 180deg;
+    }
+
+
+    58.43333333333334%{
+        rotate: 210deg;
+    }
+    66.66666666666667%{
+        rotate: 210deg;
+    }
+
+
+    66.76666666666667%{
+        rotate: 240deg;
+    }
+    75.0%{
+        rotate: 240deg;
+    }
+
+
+    75.1%{
+        rotate: 270deg;
+    }
+    83.33333333333334%{
+        rotate: 270deg;
+    }
+
+
+    83.43333333333334%{
+        rotate: 300deg;
+    }
+    91.66666666666667%{
+        rotate: 300deg;
+    }
+
+
+    91.76666666666667%{
+        rotate: 330deg;
+    }
+    100.0%{
+        rotate: 330deg;
+    }
+}
+
+#loader {
+    position: fixed;
+    text-align: center;
+    left: 25vw;
+    top: 30vh;
+    width: 50vw;
+    height: 20vh;
+    background-color: rgba(0, 0, 0, 0.73);
+    box-sizing: border-box;
+    padding: 10px;
+    color: white;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+#loader img {
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    will-change: rotate;
 }
