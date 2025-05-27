@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
     <!-- <link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="splash_screens/10.2__iPad_landscape.png"> -->
-
     <link rel="stylesheet" href="style.css">
-    
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Fortis</title>
 </head>
-<body>
-    <div id="loader">
-        <p>Loading</p>
-        <img src="src/load.svg">
-    </div>
-    <script src="sheetsAPI.js"></script>
-    <script src="script.js"></script>
-</body>
+    <body>
+        <p id="date"></p>
+        <h1 id="workoutTitle">workout</h1>
+        <div class="checkbox true">
+            <img onclick="toggleCheckbox(this)" src="src/ui/checkbox_checked.svg" class="icon">
+            <p onclick="expandCheckbox(this)" class="title">Ttext</p>
+            <img src="src/ui/expandArrow.svg" class="expandArrow">
+            <p class="content" data-expanded="false" style="display: none;">120kg | 5 reps | 3 sets</p>
+        </div>
+        <script src="sheetsAPI.js"></script>
+        <script src="script.js"></script>
+    </body>
+
 </html>

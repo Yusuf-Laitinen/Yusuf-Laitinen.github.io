@@ -1,47 +1,68 @@
-var exceriseTable
-var workouts
-var selectedWorkout
+function getDate() {
+    var date = new Date();
+    var minutes = date.getMinutes();
+    var hours = date.getHours();
+    var day = date.getDate();
+    var month = date.getMonth() + 1; // Months are zero-based
+    var year = date.getFullYear();
+    return [minutes, hours, day, month, year];
+}
 
-function loader(show) {
-    let loader = document.getElementById("loader");
-    if (show) {
-        loader.style.display = "block";
+function formatTime(minutes, hours) {
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    if (hours < 10) {
+        hours = "0" + hours;
+    }
+
+    if (hours > 12) {
+        hours -= 12;
+    } else if (hours === 0) {
+        hours = 12; // Midnight case
+    }
+
+    return `${hours}:${minutes}`;
+}
+
+function expandCheckbox(checkbox) {
+    const parent = checkbox.parentElement;
+    let expandArrow, content;
+    for (let i = 0; i < parent.children.length; i++) {
+        if (parent.children[i].classList.contains("expandArrow")) {
+            expandArrow = parent.children[i];
+        } else if (parent.children[i].classList.contains("content")) {
+            content = parent.children[i];
+        }
+    }
+
+    if (content.dataset.expanded === "true") {
+        content.dataset.expanded = "false";
+        content.style.display = "none";
+        expandArrow.style.transform = "rotate(0deg)";
     } else {
-        setTimeout(() => {
-            loader.style.display = "none";
-        }, 500);
+        content.dataset.expanded = "true";
+        content.style.display = "block";
+        expandArrow.style.transform = "rotate(90deg)";
     }
 }
-function displayWorkouts(workouts) {
 
-    let workoutsDiv = document.createElement("div");
-    workoutsDiv.id = "workouts";
-
-    let buttons = ''
-    workouts.forEach(workout => {
-        buttons += `<button onclick="selectWorkout('${workout}')">${workout}</button>`;
-    })
-
-    workoutsDiv.innerHTML =`
-    <div id="workouts">
-    <h1>Workouts</h1>
-    ${buttons}
-    </div>`;
-
-    document.body.appendChild(workoutsDiv);
-}
-async function selectWorkout(workout) {
-    loader(true);
-    selectWorkout = await getData(workout);
-    // keys of the workout table correspond to id's in the exercise table.
-    // names pictures etc can be retrieved from the exercise table.
+function toggleCheckbox(checkbox) {
+    const parent = checkbox.parentElement;
+    if (parent.classList.contains("true")) {
+        parent.classList.remove("true");
+        parent.classList.add("false");
+        checkbox.src = "src/ui/checkbox_unchecked.svg";
+    } else {
+        parent.classList.remove("false");
+        parent.classList.add("true");
+        checkbox.src = "src/ui/checkbox_checked.svg";
+    }
 }
 
-window.onload = async function() {
-    loader(true);
-    exceriseTable = await getData("Exercises");
-    workouts = await getSheetNames();
-    displayWorkouts(workouts);
-    loader(false);
+window.onload = function() {
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    document.getElementById("date").innerHTML = `${getDate()[2]} ${months[getDate()[3]-1]} ${getDate()[4]} at ${formatTime(getDate()[0], getDate()[1])}`;
+
 
 }
