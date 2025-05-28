@@ -1,68 +1,36 @@
-function getDate() {
-    var date = new Date();
-    var minutes = date.getMinutes();
-    var hours = date.getHours();
-    var day = date.getDate();
-    var month = date.getMonth() + 1; // Months are zero-based
-    var year = date.getFullYear();
-    return [minutes, hours, day, month, year];
-}
+var workout = [];
+window.onload = async function () {
+    renderDate();
+    refreshExcersizeTable();
 
-function formatTime(minutes, hours) {
-    if (minutes < 10) {
-        minutes = "0" + minutes;
-    }
-    if (hours < 10) {
-        hours = "0" + hours;
-    }
+    // Step 1: Try to use cached data first
+    const cachedData = getLocallyStoredData();
 
-    if (hours > 12) {
-        hours -= 12;
-    } else if (hours === 0) {
-        hours = 12; // Midnight case
-    }
+    if (!cachedData) {
+        // No cache, fetch immediately
+        const record = await getData("Record");
+        const workouts = await getWorkoutNames();
+        setLocallyStoredData(record, workouts);
 
-    return `${hours}:${minutes}`;
-}
-
-function expandCheckbox(checkbox) {
-    const parent = checkbox.parentElement;
-    let expandArrow, content;
-    for (let i = 0; i < parent.children.length; i++) {
-        if (parent.children[i].classList.contains("expandArrow")) {
-            expandArrow = parent.children[i];
-        } else if (parent.children[i].classList.contains("content")) {
-            content = parent.children[i];
-        }
-    }
-
-    if (content.dataset.expanded === "true") {
-        content.dataset.expanded = "false";
-        content.style.display = "none";
-        expandArrow.style.transform = "rotate(0deg)";
+        // Use freshly fetched data
     } else {
-        content.dataset.expanded = "true";
-        content.style.display = "block";
-        expandArrow.style.transform = "rotate(90deg)";
+        // Cached data exists — use it immediately
+
+        // Update silently in background
+        (async () => {
+            const record = await getData("Record");
+            const workouts = await getWorkoutNames();
+            setLocallyStoredData(record, workouts);
+        })();
     }
-}
-
-function toggleCheckbox(checkbox) {
-    const parent = checkbox.parentElement;
-    if (parent.classList.contains("true")) {
-        parent.classList.remove("true");
-        parent.classList.add("false");
-        checkbox.src = "src/ui/checkbox_unchecked.svg";
-    } else {
-        parent.classList.remove("false");
-        parent.classList.add("true");
-        checkbox.src = "src/ui/checkbox_checked.svg";
-    }
-}
-
-window.onload = function() {
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    document.getElementById("date").innerHTML = `${getDate()[2]} ${months[getDate()[3]-1]} ${getDate()[4]} at ${formatTime(getDate()[0], getDate()[1])}`;
 
 
-}
+    var _workoutSheetData = await getData(whatsOnToday(cachedData.record, cachedData.workouts));
+
+    Object.keys(_workoutSheetData[0]).forEach(excersizeID => {
+        workout.push(excersizeID)
+    });
+    workout.splice(workout.indexOf("Date"), 1); // Remove the "Date" key from the workout array
+    workout.splice(workout.indexOf("Type"), 1); // Remove the "Date" key from the workout array
+
+};

@@ -1,6 +1,29 @@
 * {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
+    -webkit-touch-callout: none;
+    /* iOS Safari long-press menu */
     color: #dcdcdc;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+body * {
+    animation: forwards fadeIn 0.3s;
 }
 
 body {
@@ -10,6 +33,7 @@ body {
     padding: 0 7vw 7vw 7vw;
     margin: 0px;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 #date {
@@ -21,15 +45,14 @@ body {
 }
 
 #workoutTitle {
-    font-size: 35px;
+    font-size: 40px;
     margin: 0px;
     margin-bottom: 3vw;
 }
 
 .checkbox {
     width: 100%;
-    height: 12vw;
-    margin-bottom: 1.3vh;
+    float: left;
 }
 
 .checkbox * {
@@ -40,9 +63,10 @@ body {
 }
 
 .checkbox .icon {
-    width: 6vw;
+    width: 9vw;
     height: 6vw;
     object-fit: contain;
+    object-position: left;
 }
 
 .checkbox .expandArrow {
@@ -50,24 +74,47 @@ body {
     width: 5vw;
     height: 6vw;
     object-fit: contain;
-    margin-right: 50vw;
 }
 
-.checkbox .title{
-    margin-left: 3vw;
+.checkbox .title {
     font-size: 6vw;
     line-height: 5vw;
 }
 
 .checkbox .content {
-    font-family: monospace;
+    display: flex;
+    align-items: center;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    box-sizing: border-box;
     margin-top: 3vw;
     font-size: 5vw;
     line-height: 10vw;
     height: 10vw;
     width: 100%;
-    text-align: center;
-    background-color: #2c2c2c;
-    border-radius: 10px;
+    margin-bottom: 1.3vh;
+    padding: 1vw 0 1vw 0;
 }
 
+.checkbox .content p {
+    font-family: monospace;
+    font-size: 5vw;
+    line-height: 10vw;
+    height: 8vw;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    /* Force each <p> to take up exactly 1/3 */
+    width: 33.33%;
+    flex: 0 0 33.33%;
+}
+
+p[contenteditable]:focus {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+}
