@@ -1818,7 +1818,7 @@ function toggleCheckbox(checkbox) {
         checkbox.src = "src/ui/checkbox_checked.svg";
     }
 }
-function addCheckbox(name, content) {
+function addCheckbox(name, content, checked) {
     //trim name to be 21 chars or less. If longer than 21 chars, cut it off and add "..."
     if (name.length > 21) {
         name = name.substring(0, 20) + "...";
@@ -1828,11 +1828,7 @@ function addCheckbox(name, content) {
     div.classList = "checkbox";
     div.style.height = "8vw";
 
-    if (content === "") {
-        div.dataset.checked = "false";
-    } else {
-        div.dataset.checked = "true";
-    }
+    div.dataset.checked = String(checked);
 
     content = content.split('x').map(Number)
     if (div.dataset.checked === "true") {
@@ -1841,9 +1837,9 @@ function addCheckbox(name, content) {
         <p onclick="expandCheckbox(this)" class="title">${name}</p>
         <img onclick="expandCheckbox(this)" src="src/ui/expandArrow.svg" class="expandArrow">
         <div class="content" data-expanded="false" style="display: none;">
-            <p>${content[0]}</p>
-            <p style="border-right: 2px solid #dcdcdc; border-left: 2px solid #dcdcdc;">${content[1]}</p>
-            <p>${content[2]}</p>
+            <p>${content[0]}kg</p>
+            <p style="border-right: 2px solid #dcdcdc; border-left: 2px solid #dcdcdc;">${content[1]} reps</p>
+            <p>${content[2]} sets</p>
 
         </div>
         `
@@ -1853,9 +1849,9 @@ function addCheckbox(name, content) {
         <p onclick="expandCheckbox(this)" class="title">${name}</p>
         <img onclick="expandCheckbox(this)" src="src/ui/expandArrow.svg" class="expandArrow">
         <div class="content" data-expanded="false" style="display: none;">
-            <p>${content[0]}</p>
-            <p style="border-right: 2px solid #dcdcdc; border-left: 2px solid #dcdcdc;">${content[1]}</p>
-            <p>${content[2]}</p>
+            <p>${content[0]}kg</p>
+            <p style="border-right: 2px solid #dcdcdc; border-left: 2px solid #dcdcdc;">${content[1]} reps</p>
+            <p>${content[2]} sets</p>
 
         </div>
         `
@@ -1877,6 +1873,20 @@ function whatsOnToday(record, workouts) {
     return workouts[currentWorkoutIndex]; // Return the workout name    
 }
 
-function getHistoricalData(workoutRecord, excserciseID) {
-    //todo tommorow.
+function getHistoricalData(workoutRecord, workout) {
+    let historicalData = {};
+    // Loop from most recent to oldest
+    for (let i = workoutRecord.length - 1; i >= 0; i--) {
+        for (let j = 0; j < workout.length; j++) {
+            const key = String(workout[j]);
+            // Only set if not already found (most recent)
+            if (historicalData[key] === undefined) {
+                const value = workoutRecord[i][key];
+                if (value !== undefined && value !== "") {
+                    historicalData[key] = value;
+                }
+            }
+        }
+    }
+    return historicalData;
 }
