@@ -107,3 +107,45 @@ p[contenteditable]:focus {
     -webkit-tap-highlight-color: transparent;
     -webkit-focus-ring-color: transparent;
 }
+
+@keyframes loadhalf {
+    0% {
+        width: 0vw;
+    }
+    100% {
+        width: 50vw;
+    }
+}
+
+@keyframes loadFull {
+    0% {
+        width: 50vw;
+    }
+
+    50% {
+        opacity: 1;
+        width: 100vw;
+
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+#loadingBar {
+    left: 0px;
+    top: 0px;
+    position: fixed;
+    height: 3px;
+    width: 100vw;
+    background-color: rgb(93, 212, 255);
+}
+
+#loadingBar.start {
+    animation: loadhalf 0.5s ease-in-out forwards;
+}
+
+#loadingBar.end {
+    animation: loadFull 0.56s ease-in-out forwards;
+}
