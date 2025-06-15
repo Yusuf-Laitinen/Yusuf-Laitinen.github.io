@@ -1,0 +1,44 @@
+body.light {
+    background-color: #ebebeb;
+}
+
+body.dark {
+    background-color: #2d2d2d;
+}
+
+img#icon.selected {
+    width: 90vw;
+    height: 90vw;
+    border: 5px solid transparent;
+    outline: 7px solid #00bfbc;
+    box-sizing: border-box;
+    border-radius: 1px;
+}
+
+img#icon {
+    width: 90vw;
+    height: 90vw;
+    border: 5px solid transparent;
+    outline: 7px solid transparent;
+    box-sizing: border-box;
+    border-radius: 1px;
+}
+
+#light {
+    background-color: #00bfbc;
+}
+
+
+#slider {
+  position: fixed;
+  left: 0;
+  top: 10vh;
+  background-color: aquamarine;
+  width: 100vw;
+  height: 90vh;
+  padding-left: 5vw;
+  overflow-y: scroll;
+
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
