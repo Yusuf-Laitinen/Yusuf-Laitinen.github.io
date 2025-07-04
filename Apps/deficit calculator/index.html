@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily TDEE and Deficit Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2>Daily TDEE and Calorie Deficit Calculator</h2>
+    <form id="tdeeForm">
+        <label for="sex">Sex:</label>
+        <select id="sex" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <label for="age">Age (years):</label>
+        <input type="number" id="age" required>
+
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" required>
+
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" required>
+
+        <label for="bodyFat">Body Fat %:</label>
+        <input type="number" id="bodyFat" step="0.1" required>
+
+        <label for="steps">Steps walked today:</label>
+        <input type="number" id="steps" required>
+
+        <label for="gymMins">Time in gym (minutes):</label>
+        <input type="number" id="gymMins" required>
+
+        <label for="caloriesEaten">Calories eaten (optional):</label>
+        <input type="number" id="caloriesEaten">
+
+        <button type="button" onclick="calculateTDEE()">Calculate</button>
+    </form>
+
+    <div class="result" id="tdeeResult"></div>
+    <div class="result" id="deficitResult"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
