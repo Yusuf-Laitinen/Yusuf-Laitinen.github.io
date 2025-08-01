@@ -1,0 +1,28 @@
+iframe {
+    position: fixed;
+    width: 100vw;
+    height: 97vh;
+    left: 0px;
+    top: 0px;
+    outline: none;
+    border: 0px;
+    background-color: white;
+    z-index: 2;
+}
+
+#deleteIframe {
+    position: fixed;
+    left: 0px;
+    top: 97vh;
+    z-index: 3;
+    height: 3vh;
+    width: 100vw;
+    outline: none;
+    border: none;
+    text-align: left;
+}
+
+body {
+    color: rgb(208, 208, 208);
+    background-color: #1f1f1f;
+}
