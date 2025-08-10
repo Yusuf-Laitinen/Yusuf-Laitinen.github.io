@@ -1,0 +1,27 @@
+body {
+    background-color: black;
+}
+
+#main {
+    position: fixed;
+    left: 5%;
+    top: 10%;
+    width: 90%;
+}
+
+#main * {
+    width: 100%;
+    height: 5vh;
+    box-sizing: border-box;
+    outline: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 0px 10px;
+    font-weight: bold;
+}
+
+#main button:disabled {
+    background-color: rgb(192, 192, 192);
+    color: rgb(96, 96, 96);
+}
