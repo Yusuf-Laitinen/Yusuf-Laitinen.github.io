@@ -1,0 +1,19 @@
+{
+  "push": {
+    "bench_press": [[95, 7], [95, 7], [95, 7], [false, false, false]],
+    "dips": [[0, 10], [0, 10], [0, 10], [false, false, false]],
+    "tricep_pushdown": [[30, 10], [30, 10], [30, 10], [false, false, false]],
+    "pec_deck": [[70, 10], [70, 10], [70, 10], [false, false, false]],
+    "lateral_cable_raise": [[8, 10], [8, 10], [6, 10], [false, false, false]],
+    "rear_delt_row": [[6, 10], [6, 10], [3, 10], [false, false, false]]
+  },
+
+  "pull": {
+    "lat_row": [[132.5, 10], [132.5, 10], [132.5, 10], [false, false, false]],
+    "lat_pulldown": [[85, 10], [85, 10], [85, 10], [false, false, false]],
+    "cable_bicep_curl": [[22, 10], [22, 10], [22, 10], [false, false, false]],
+    "cable_forearm_curl": [[35, 10], [35, 10], [35, 10], [false, false, false]],
+    "cable_forearm_finger_pull": [[35, 10], [35, 10], [35, 10], [false, false, false]],
+    "bent_over_row_smith": [[70, 10], [70, 10], [70, 10], [false, false, false]]
+  }
+}
