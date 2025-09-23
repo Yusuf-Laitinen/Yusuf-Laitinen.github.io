@@ -86,8 +86,8 @@ function createSlot(subject, room, starttime, endtime) {
 window.onload = async () => {
 
     const date = new Date();
-    //const dayIndex = date.getDay(); // 0 = Sunday, 1 = Monday, ... 6 = Saturday
-    const dayIndex = 1 //debug
+    const dayIndex = date.getDay(); // 0 = Sunday, 1 = Monday, ... 6 = Saturday
+    //const dayIndex = 1 //debug
 
     const dayNames = ["monday", "tuesday", "wednesday", "thursday", "friday"];
 
