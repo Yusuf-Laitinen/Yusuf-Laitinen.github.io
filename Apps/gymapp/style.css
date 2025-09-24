@@ -32,6 +32,11 @@
     background-color: transparent;
 }
 
+body {
+    background-color: var(--backgroundColor);
+}
+
+
 #WorkoutSelectionScreen {
     overflow-y: scroll;
     background-color: var(--backgroundColor);
