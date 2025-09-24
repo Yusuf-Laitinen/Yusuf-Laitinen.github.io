@@ -1,22 +1,6 @@
-var fallbackWorkoutData = {
-    "push": {
-        "bench_press": [[95, 7], [95, 7], [95, 7], [false, false, false]],
-        "dips": [[0, 10], [0, 10], [0, 10], [false, false, false]],
-        "tricep_pushdown": [[30, 10], [30, 10], [30, 10], [false, false, false]],
-        "pec_deck": [[70, 10], [70, 10], [70, 10], [false, false, false]],
-        "lateral_cable_raise": [[8, 10], [8, 10], [6, 10], [false, false, false]],
-        "rear_delt_row": [[6, 10], [6, 10], [3, 10], [false, false, false]]
-    },
+const docId = "1rZkYcIw9UEISTkzmuEg1rXVMFiJtuKieMmUFfLEb5y0"
 
-    "pull": {
-        "lat_row": [[132.5, 10], [132.5, 10], [132.5, 10], [false, false, false]],
-        "lat_pulldown": [[85, 10], [85, 10], [85, 10], [false, false, false]],
-        "cable_bicep_curl": [[22, 10], [22, 10], [22, 10], [false, false, false]],
-        "cable_forearm_curl": [[35, 10], [35, 10], [35, 10], [false, false, false]],
-        "cable_forearm_finger_pull": [[35, 10], [35, 10], [35, 10], [false, false, false]],
-        "bent_over_row_smith": [[70, 10], [70, 10], [70, 10], [false, false, false]]
-    }
-}
+var fallbackWorkoutData = {}
 
 const debugMode = true
 
@@ -29,6 +13,8 @@ function debug(string) {
 function saveToLocalStorage(key, obj) {
     try {
         localStorage.setItem(key, JSON.stringify(obj))
+        debug(obj)
+        debug(writeDocument(docId, JSON.stringify(obj)))
     } catch (e) {
         console.error("Error saving to localStorage", e)
     }
@@ -127,12 +113,76 @@ function displayWorkout(workoutData, workoutName) {
                 saveToLocalStorage("gymAppv1", workoutData)
             }
 
-            setContainer.innerHTML = `<td>${setInfo[0]} kg</td>
-                                      <td>${setInfo[1]} reps</td>`
+            let td1 = document.createElement("td")
+            let td2 = document.createElement("td")
+            let td3 = document.createElement("td")
 
-            let td = document.createElement("td")
-            td.appendChild(checkbox)
-            setContainer.appendChild(td)
+            td1.innerHTML = `${setInfo[0]} kg`
+            td1.contentEditable = true
+            td1.inputMode = "numeric"
+            td1.className = "kg"
+            td1.addEventListener("focus", (e) => {
+                const node = e.target
+                node.innerHTML = node.innerHTML.split(" ")[0]
+            })
+            td1.addEventListener("blur", (e) => {
+                const node = e.target
+                let value = node.innerText.trim()
+
+                if (value === "") {
+                    value = "0"
+                }
+
+                // update DOM
+                node.innerText = value + " " + node.className
+
+                // update data model
+                exerciseData[setIndex][0] = parseFloat(value) || 0
+
+                // persist
+                saveToLocalStorage("gymAppv1", workoutData)
+            })
+
+            td1.addEventListener("input", (e) => {
+                console.log("Content changed:", e.target); // or innerHTML
+            });
+            setContainer.appendChild(td1)
+
+
+            td2.innerHTML = `${setInfo[1]} reps`
+            td2.contentEditable = true
+            td2.inputMode = "numeric"
+            td2.className = "reps"
+            td2.addEventListener("focus", (e) => {
+                const node = e.target
+                node.innerHTML = node.innerHTML.split(" ")[0]
+            })
+            td2.addEventListener("blur", (e) => {
+                const node = e.target
+                let value = node.innerText.trim()
+
+                if (value === "") {
+                    value = "0"
+                }
+
+                // update DOM
+                node.innerText = value + " " + node.className
+
+                // update data model
+                exerciseData[setIndex][1] = parseInt(value) || 0
+
+                // persist
+                saveToLocalStorage("gymAppv1", workoutData)
+            })
+
+            td2.addEventListener("input", (e) => {
+                console.log("Content changed:", e.target); // or innerHTML
+            });
+            setContainer.appendChild(td2)
+
+
+            td3.appendChild(checkbox)
+            setContainer.appendChild(td3)
 
             dataTable.appendChild(setContainer)
         }
@@ -144,7 +194,6 @@ function displayWorkout(workoutData, workoutName) {
     document.body.appendChild(container)
 }
 
-
 function displayWorkoutSelectionScreen(workoutData) {
     const names = Object.keys(workoutData)
 
@@ -153,6 +202,7 @@ function displayWorkoutSelectionScreen(workoutData) {
 
     names.forEach(workout => {
         let item = document.createElement("button")
+        item.className = "button"
         item.innerText = workout
         item.onclick = () => {
             displayWorkout(workoutData, workout)
@@ -161,15 +211,35 @@ function displayWorkoutSelectionScreen(workoutData) {
         container.appendChild(item)
     });
 
+    let advancedSettings = document.createElement("div")
+    advancedSettings.className = "hidden"
+
+    advancedSettings.onclick = () => {
+        if (advancedSettings.classList.contains("hidden")) {
+            advancedSettings.classList.remove("hidden")
+            advancedSettings.classList.add("visible")
+        } else {
+            advancedSettings.classList.remove("visible")
+            advancedSettings.classList.add("hidden")
+        }
+    }
+
+    advancedSettings.innerHTML = `<button onclick="localStorage.removeItem('gymAppv1')">///</button>`
+    container.appendChild(advancedSettings)
+
     document.body.appendChild(container)
 }
 
-window.onload = () => {
+window.onload = async () => {
     let workoutData = loadFromLocalStorage("gymAppv1")
     if (workoutData === null) {
-        workoutData = fallbackWorkoutData
-        debug("Fallback")
-
+        workoutData = await readDocument(docId)
+        workoutData = JSON.parse(workoutData)
+        saveToLocalStorage("gymAppv1", workoutData)
+        debug("Fetched server data")
     }
+
+    debug(workoutData)
+
     displayWorkoutSelectionScreen(workoutData)
 }
