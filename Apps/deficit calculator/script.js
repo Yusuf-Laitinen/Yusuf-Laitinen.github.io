@@ -1,5 +1,5 @@
 window.onload = () => {
-    ['age', 'height', 'weight', 'bodyFat'].forEach(id => {
+    ['age', 'height', 'weight', 'bodyFat', 'correctiveMargin'].forEach(id => {
         const stored = localStorage.getItem(id);
         if (stored !== null) {
             document.getElementById(id).value = stored;
@@ -29,6 +29,7 @@ function calculateTDEE() {
     localStorage.setItem('height', height);
     localStorage.setItem('weight', weight);
     localStorage.setItem('bodyFat', bodyFat);
+    localStorage.setItem('correctiveMargin', correctiveMargin);
 
     const leanMass = weight * (1 - bodyFat / 100);
     const bmr = 370 + (21.6 * leanMass);
