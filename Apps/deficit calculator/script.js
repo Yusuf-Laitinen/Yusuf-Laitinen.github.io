@@ -35,7 +35,7 @@ function calculateTDEE() {
     const bmr = 370 + (21.6 * leanMass);
 
     const stepsCalories = steps * 0.04;
-    const gymCalories = gymMins * 8;
+    const gymCalories = gymMins * 5;//gemini correction. as of 22nd jan 2026. change from 8 to 5 
 
     const tdee = Math.round(bmr + stepsCalories + gymCalories);
     document.getElementById('tdeeResult').innerText = `Estimated TDEE for today: ${tdee} kcal`;
