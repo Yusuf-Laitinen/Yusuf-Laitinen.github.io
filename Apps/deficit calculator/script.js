@@ -16,6 +16,8 @@ function calculateTDEE() {
     const steps = parseInt(document.getElementById('steps').value);
     const gymMins = parseInt(document.getElementById('gymMins').value);
     const caloriesEaten = parseFloat(document.getElementById('caloriesEaten').value);
+    
+    const correctiveMargin = parseInt(document.getElementById('correctiveMargin').value);
 
     if (isNaN(bodyFat)) {
         alert("Body Fat % is required.");
@@ -38,7 +40,7 @@ function calculateTDEE() {
     document.getElementById('tdeeResult').innerText = `Estimated TDEE for today: ${tdee} kcal`;
 
     if (!isNaN(caloriesEaten)) {
-        const deficit = tdee - (caloriesEaten+200);//correction
+        const deficit = tdee - (caloriesEaten+correctiveMargin);//correction
         const status = deficit > 0 ? 'Deficit' : 'Surplus';
         document.getElementById('deficitResult').innerText = `Caloric ${status}: ${Math.abs(deficit)} kcal`;
     } else {
