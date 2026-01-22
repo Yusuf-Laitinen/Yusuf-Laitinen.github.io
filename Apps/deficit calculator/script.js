@@ -38,7 +38,7 @@ function calculateTDEE() {
     document.getElementById('tdeeResult').innerText = `Estimated TDEE for today: ${tdee} kcal`;
 
     if (!isNaN(caloriesEaten)) {
-        const deficit = tdee - caloriesEaten;
+        const deficit = tdee - (caloriesEaten+200);//correction
         const status = deficit > 0 ? 'Deficit' : 'Surplus';
         document.getElementById('deficitResult').innerText = `Caloric ${status}: ${Math.abs(deficit)} kcal`;
     } else {
