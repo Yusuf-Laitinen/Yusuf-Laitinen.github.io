@@ -1,7 +1,14 @@
+* {
+    --background-colour: #181818;
+    --text-colour: #858585;
+    --foreground-colour: #1f1f1f;
+    --border-colour: #2b2b2b;
+}
+
 body {
     font-family: Arial, sans-serif;
-    color: rgb(192, 193, 185);
-    background-color: black;
+    color: var(--text-colour);
+    background-color: var(--background-colour);
     max-width: 600px;
     margin: 2rem auto;
     padding: 1rem;
@@ -10,11 +17,11 @@ body {
 input,
 select,
 button {
-    color: white;
+    color: var(--text-colour);
     outline: none;
-    border: 1px solid rgb(43, 43, 43);
+    border: 1px solid var(--border-colour);
     border-radius: 5px;
-    background-color: rgb(19, 19, 19);
+    background-color: var(--foreground-colour);
     margin: 0.5rem 0;
     padding: 0.5rem;
     width: 100%;
@@ -24,6 +31,27 @@ button {
 
 label {
     font-weight: bold;
+}
+
+.settings-dropdown {
+    margin: 1rem 0;
+    background-color: var(--foreground-colour);
+    border-radius: 5px;
+    border: 1px solid var(--border-colour);
+}
+
+.settings-dropdown summary {
+    font-weight: bold;
+    color: var(--text-colour);
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: var(--foreground-colour);
+    user-select: none;
+}
+
+.settings-content {
+    padding: 1rem 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .result {
