@@ -47,6 +47,16 @@ label {
     border-radius: 5px;
     background-color: var(--foreground-colour);
     user-select: none;
+    list-style: none;
+}
+
+.settings-dropdown summary::after {
+    content: ' ▼';
+    font-size: 0.8em;
+}
+
+.settings-dropdown[open] summary::after {
+    content: ' ▲';
 }
 
 .settings-content {
