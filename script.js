@@ -2,16 +2,23 @@ function isMobile() {
     return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
-window.onload = () => {
-    let iframe = document.createElement("iframe")
+window.onload = async () => {
+    let apps
+    await fetch("index.json")
+        .then(response => response.json())
+        .then(data => {
+            apps = data
+        })
 
-    if (isMobile()) {
-        iframe.src = "landing/mobile/mobile.html"
-    } else {
-        iframe.src = "landing/desktop/desktop.html"
-    }
-
-    document.body.appendChild(iframe)
+    apps.forEach(app => {
+        const appElement = document.createElement("img")
+        appElement.classList.add("app_icon")
+        appElement.src = `Apps/${app}/apple-touch-icon.png`
+        appElement.onclick = () => {
+            window.open(`Apps/${app}/index.html`, "_blank")
+        }
+        document.body.appendChild(appElement)
+    })
 }
 
 
