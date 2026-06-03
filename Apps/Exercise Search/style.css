@@ -1,0 +1,46 @@
+* {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}
+
+main {
+	position: fixed;
+	width: 90vw;
+	left: 5vw;
+	top: 0;
+	height: 100vh;
+}
+
+main * {
+	width: 100%;
+	border-radius: 15px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+#search {
+	background-color: rgba(128, 128, 128, 0.259);
+	padding: 10px 20px;
+	box-sizing: border-box;
+	box-shadow: none;
+}
+
+#search.unfocused {
+	color: gray;
+}
+
+#search.focused {
+	color: black;
+}
+
+#name {
+	text-align: center;
+	font-size: 40px;
+	text-transform: capitalize;
+	box-shadow: none;
+}
+
+#preview {
+	padding: 10%;
+	box-sizing: border-box;
+}

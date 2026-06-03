@@ -1,3 +1,44 @@
+* {
+    font-family: system-ui, sans-serif;
+
+}
+
+:root {
+    --background-color: #121314;
+    --text-color: #bfbfbf;
+    --accent-color: #79dcfe;
+    --shadow-color: rgb(0, 0, 0);
+    --border-color: #333;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 10px;
+}
+
 .app_icon {
-    width: 30%;
+    width: 100%;
+    border-radius: 5px;
+}
+.app_text {
+    font-family: system-ui, sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.app_element {
+    width: 10vw;
+    float: left;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    margin: 0.45vw;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.app_element:hover {
+    box-shadow: 0 8px 16px var(--shadow-color);
+    border-color: var(--accent-color);
 }
