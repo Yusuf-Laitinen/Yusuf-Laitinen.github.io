@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Calorie Deficit Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1e1e1e">
+  <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+
+  <main id="home-view" class="view">
+    <header class="app-header">
+      <h1 id="month-year-title"></h1>
+    </header>
+    
+    <div class="calendar-container">
+      <div class="weekdays">
+        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+      </div>
+      <div id="calendar-grid" class="calendar-grid"></div>
+    </div>
+  </main>
+
+  <main id="day-view" class="view hidden">
+    <header class="app-header">
+      <h1 id="selected-date-title">14 June 2026</h1>
+    </header>
+
+    <div class="entry-container">
+      <div class="selection-row">
+        <button type="button" id="btn-deficit" class="toggle-btn btn-deficit">Deficit</button>
+        <button type="button" id="btn-not" class="toggle-btn btn-not">Not</button>
+      </div>
+
+      <button type="button" id="btn-reset" class="reset-btn">Reset</button>
+    </div>
+
+    <footer class="footer-actions">
+      <button type="button" id="btn-save" class="save-btn">Save</button>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
