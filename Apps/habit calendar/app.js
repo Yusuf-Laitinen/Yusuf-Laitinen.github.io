@@ -1,5 +1,5 @@
 // --- CONFIGURATION & CONSTANTS ---
-const daily_cal_target = 2400;
+const daily_cal_target = 2800;
 const historical_deficit_offset = 0; // Reset to 0 for a clean slate
 const kcal_per_kg = 7700;
 
