@@ -1,48 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Calorie Deficit Tracker</title>
+  <title>Deficit</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="apple_touch_icon.png">
   <link rel="stylesheet" href="styles.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1e1e1e">
-  <link rel="apple-touch-icon" href="icon-192.png">
 </head>
+
 <body>
 
-  <main id="home-view" class="view">
-    <header class="app-header">
-      <h1 id="month-year-title"></h1>
-    </header>
-    
-    <div class="calendar-container">
-      <div class="weekdays">
-        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
-      </div>
-      <div id="calendar-grid" class="calendar-grid"></div>
+  <header>
+    <h1>Today</h1>
+    <div class="date-subtitle" id="header-date"></div>
+  </header>
+
+  <div class="card">
+    <div class="card-title">Cumulative deficit</div>
+    <div class="flex-between">
+      <div class="cumulative-val" id="ui-cum-kcal">0 kcal</div>
+      <div class="cumulative-kg" id="ui-cum-kg">0.00kg</div>
     </div>
-  </main>
+  </div>
 
-  <main id="day-view" class="view hidden">
-    <header class="app-header">
-      <h1 id="selected-date-title">14 June 2026</h1>
-    </header>
-
-    <div class="entry-container">
-      <div class="selection-row">
-        <button type="button" id="btn-deficit" class="toggle-btn btn-deficit">Deficit</button>
-        <button type="button" id="btn-not" class="toggle-btn btn-not">Not</button>
-      </div>
-
-      <button type="button" id="btn-reset" class="reset-btn">Reset</button>
+  <div class="card">
+    <div class="calendar-header">
+      <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
     </div>
+    <div class="calendar-grid" id="calendar-grid">
+    </div>
+  </div>
 
-    <footer class="footer-actions">
-      <button type="button" id="btn-save" class="save-btn">Save</button>
-    </footer>
-  </main>
+  <div class="card">
+    <div class="card-title">Calories</div>
+    <div class="input-wrapper">
+      <input type="number" id="calorie-input" placeholder="0" inputmode="numeric">
+      <div class="input-suffix" id="status-text">Enter calories</div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-save" onclick="saveData()">Save</button>
+      <button class="btn btn-reset" onclick="resetData()">Reset</button>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
+
 </html>

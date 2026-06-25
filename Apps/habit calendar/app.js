@@ -1,192 +1,195 @@
-// --- Database Configuration ---
-const DB_NAME = 'CalorieDeficitDB';
-const DB_VERSION = 1;
-const STORE_NAME = 'dailyStatus';
-let db = null;
+// --- CONFIGURATION & CONSTANTS ---
+const daily_cal_target = 2400;
+const historical_deficit_offset = 0; // Reset to 0 for a clean slate
+const kcal_per_kg = 7700;
 
+// --- STATE ---
+let selectedDate = new Date();
+let currentMonth = new Date();
+let db;
+let allEntriesMap = new Map(); // DateString -> Consumed Amount
+
+// --- INITIALIZATION ---
+document.addEventListener("DOMContentLoaded", () => {
+  updateHeaderDate();
+  initDB();
+  setupInputListener();
+});
+
+// --- INDEXED DB SETUP ---
 function initDB() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open(DB_NAME, DB_VERSION);
+  const request = indexedDB.open("CalorieTrackerDB", 1);
 
-    request.onerror = () => reject(request.error);
-    request.onsuccess = () => {
-      db = request.result;
-      resolve(db);
-    };
-
-    request.onupgradeneeded = (event) => {
-      const database = event.target.result;
-      if (!database.objectStoreNames.contains(STORE_NAME)) {
-        database.createObjectStore(STORE_NAME, { keyPath: 'date' });
-      }
-    };
-  });
-}
-
-function getDayStatus(dateStr) {
-  return new Promise((resolve) => {
-    const transaction = db.transaction(STORE_NAME, 'readonly');
-    const store = transaction.objectStore(STORE_NAME);
-    const request = store.get(dateStr);
-    request.onsuccess = () => resolve(request.result ? request.result.status : null);
-    request.onerror = () => resolve(null);
-  });
-}
-
-function saveDayStatus(dateStr, status) {
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction(STORE_NAME, 'readwrite');
-    const store = transaction.objectStore(STORE_NAME);
-    
-    let request;
-    if (status === null) {
-      request = store.delete(dateStr);
-    } else {
-      request = store.put({ date: dateStr, status: status });
+  request.onupgradeneeded = (event) => {
+    db = event.target.result;
+    if (!db.objectStoreNames.contains("DailyEntries")) {
+      db.createObjectStore("DailyEntries", { keyPath: "date" });
     }
+  };
 
-    transaction.oncomplete = () => resolve();
-    transaction.onerror = () => reject(transaction.error);
-  });
+  request.onsuccess = (event) => {
+    db = event.target.result;
+    loadAllData();
+  };
+
+  request.onerror = (event) => console.error("Database error:", event.target.errorCode);
 }
 
-// --- App State & Navigation Logic ---
-const state = {
-  currentDate: new Date(),
-  selectedDateStr: null,
-  selectedStatus: null
-};
+// --- DATA LOADING & CALCULATION ---
+function loadAllData() {
+  const transaction = db.transaction(["DailyEntries"], "readonly");
+  const store = transaction.objectStore("DailyEntries");
+  const request = store.getAll();
 
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  request.onsuccess = () => {
+    allEntriesMap.clear();
+    let cumulativeDeficit = historical_deficit_offset;
 
-// DOM Cache
-const homeView = document.getElementById('home-view');
-const dayView = document.getElementById('day-view');
-const calendarGrid = document.getElementById('calendar-grid');
-const monthYearTitle = document.getElementById('month-year-title');
-const selectedDateTitle = document.getElementById('selected-date-title');
-
-const btnDeficit = document.getElementById('btn-deficit');
-const btnNot = document.getElementById('btn-not');
-const btnReset = document.getElementById('btn-reset');
-const btnSave = document.getElementById('btn-save');
-
-function init() {
-  initDB().then(() => {
-    renderCalendar();
-    setupEventListeners();
-  }).catch(err => console.error("Database initialization failed", err));
-  
-  registerServiceWorker();
-}
-
-function navigateTo(viewName) {
-  if (viewName === 'home') {
-    dayView.classList.add('hidden');
-    homeView.classList.remove('hidden');
-    renderCalendar();
-  } else if (viewName === 'day') {
-    homeView.classList.add('hidden');
-    dayView.classList.remove('hidden');
-    updateDayViewUI();
-  }
-}
-
-// --- Calendar Rendering Logic ---
-async function renderCalendar() {
-  calendarGrid.innerHTML = '';
-  const year = state.currentDate.getFullYear();
-  const month = state.currentDate.getMonth();
-
-  monthYearTitle.textContent = `${months[month]} ${year}`;
-
-  const firstDayIndex = new Date(year, month, 1).getDay();
-  const totalDays = new Date(year, month + 1, 0).getDate();
-
-  // Empty padded cells for days of previous month
-  for (let i = 0; i < firstDayIndex; i++) {
-    const emptyCell = document.createElement('div');
-    emptyCell.classList.add('calendar-day', 'empty');
-    calendarGrid.appendChild(emptyCell);
-  }
-
-  // Populate actual calendar days
-  for (let day = 1; day <= totalDays; day++) {
-    const dayCell = document.createElement('div');
-    dayCell.classList.add('calendar-day');
-    dayCell.textContent = day;
-
-    // ISO Format: YYYY-MM-DD
-    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    dayCell.dataset.date = dateStr;
-
-    const status = await getDayStatus(dateStr);
-    if (status === 'deficit') {
-      dayCell.classList.add('state-deficit');
-    } else if (status === 'not') {
-      dayCell.classList.add('state-not');
-    } else {
-      dayCell.classList.add('state-none');
-    }
-
-    dayCell.addEventListener('click', () => handleDayClick(dateStr, day, month, year));
-    calendarGrid.appendChild(dayCell);
-  }
-}
-
-// --- Day Selection & Action Logic ---
-async function handleDayClick(dateStr, day, month, year) {
-  state.selectedDateStr = dateStr;
-  selectedDateTitle.textContent = `${day} ${months[month]} ${year}`;
-  
-  const currentStatus = await getDayStatus(dateStr);
-  state.selectedStatus = currentStatus;
-  
-  navigateTo('day');
-}
-
-function updateDayViewUI() {
-  btnDeficit.classList.remove('active');
-  btnNot.classList.remove('active');
-
-  if (state.selectedStatus === 'deficit') {
-    btnDeficit.classList.add('active');
-  } else if (state.selectedStatus === 'not') {
-    btnNot.classList.add('active');
-  }
-}
-
-function setupEventListeners() {
-  btnDeficit.addEventListener('click', () => {
-    state.selectedStatus = 'deficit';
-    updateDayViewUI();
-  });
-
-  btnNot.addEventListener('click', () => {
-    state.selectedStatus = 'not';
-    updateDayViewUI();
-  });
-
-  btnReset.addEventListener('click', () => {
-    state.selectedStatus = null;
-    updateDayViewUI();
-  });
-
-  btnSave.addEventListener('click', async () => {
-    await saveDayStatus(state.selectedDateStr, state.selectedStatus);
-    navigateTo('home');
-  });
-}
-
-// --- Service Worker Registration ---
-function registerServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('Service Worker registered.', reg))
-        .catch(err => console.error('Service Worker dynamic registration failed.', err));
+    request.result.forEach(entry => {
+      allEntriesMap.set(entry.date, entry.consumed);
+      cumulativeDeficit += (daily_cal_target - entry.consumed);
     });
+
+    updateCumulativeUI(cumulativeDeficit);
+    renderCalendar();
+    loadSelectedDayUI();
+  };
+}
+
+// --- UI UPDATES ---
+function updateCumulativeUI(totalDeficit) {
+  const kgLost = (totalDeficit / kcal_per_kg).toFixed(2);
+  document.getElementById('ui-cum-kcal').innerText = `${totalDeficit.toLocaleString()} kcal`;
+  document.getElementById('ui-cum-kg').innerText = `${kgLost}kg`;
+}
+
+function loadSelectedDayUI() {
+  const dateStr = formatDate(selectedDate);
+  const inputEl = document.getElementById('calorie-input');
+
+  if (allEntriesMap.has(dateStr)) {
+    inputEl.value = allEntriesMap.get(dateStr);
+  } else {
+    inputEl.value = '';
+  }
+  updateStatusText();
+}
+
+// --- CALENDAR LOGIC ---
+function renderCalendar() {
+  const grid = document.getElementById('calendar-grid');
+  grid.innerHTML = '';
+
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  // Calculate start day (0 = Mon, ..., 6 = Sun) to align with UI mockup
+  let startDay = new Date(year, month, 1).getDay();
+  startDay = startDay === 0 ? 6 : startDay - 1;
+
+  // Empty slots for alignment
+  for (let i = 0; i < startDay; i++) {
+    const emptySlot = document.createElement('div');
+    grid.appendChild(emptySlot);
+  }
+
+  const selectedDateStr = formatDate(selectedDate);
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const loopDate = new Date(year, month, day);
+    const loopDateStr = formatDate(loopDate);
+
+    const btn = document.createElement('button');
+    btn.className = 'day-btn';
+    btn.innerText = day;
+
+    if (allEntriesMap.has(loopDateStr)) {
+      btn.classList.add('has-data');
+    }
+
+    if (loopDateStr === selectedDateStr) {
+      btn.classList.add('selected');
+    }
+
+    btn.onclick = () => {
+      selectedDate = loopDate;
+      renderCalendar();
+      loadSelectedDayUI();
+    };
+
+    grid.appendChild(btn);
   }
 }
 
-document.addEventListener('DOMContentLoaded', init);
+// --- INPUT HANDLING ---
+function setupInputListener() {
+  document.getElementById('calorie-input').addEventListener('input', updateStatusText);
+}
+
+function updateStatusText() {
+  const val = parseInt(document.getElementById('calorie-input').value);
+  const statusEl = document.getElementById('status-text');
+
+  if (isNaN(val)) {
+    statusEl.innerHTML = `<span style="color: var(--text-muted)">Daily target: ${daily_cal_target}</span>`;
+    return;
+  }
+
+  const diff = daily_cal_target - val;
+  if (diff > 0) {
+    statusEl.innerHTML = `<span class="deficit-text">${diff} kcal deficit</span>`;
+  } else if (diff < 0) {
+    statusEl.innerHTML = `<span class="surplus-text">${Math.abs(diff)} kcal surplus</span>`;
+  } else {
+    statusEl.innerHTML = `<span class="deficit-text">Perfect Maintenance</span>`;
+  }
+}
+
+// --- CRUD OPERATIONS ---
+function saveData() {
+  const inputVal = parseInt(document.getElementById('calorie-input').value);
+  if (isNaN(inputVal)) return;
+
+  const dateStr = formatDate(selectedDate);
+  const transaction = db.transaction(["DailyEntries"], "readwrite");
+  const store = transaction.objectStore("DailyEntries");
+
+  store.put({ date: dateStr, consumed: inputVal });
+
+  transaction.oncomplete = () => loadAllData();
+}
+
+function resetData() {
+  const dateStr = formatDate(selectedDate);
+  const transaction = db.transaction(["DailyEntries"], "readwrite");
+  const store = transaction.objectStore("DailyEntries");
+
+  store.delete(dateStr);
+
+  transaction.oncomplete = () => {
+    document.getElementById('calorie-input').value = '';
+    loadAllData();
+  };
+}
+
+// --- UTILITIES ---
+function formatDate(d) {
+  const offset = d.getTimezoneOffset();
+  d = new Date(d.getTime() - (offset * 60 * 1000));
+  return d.toISOString().split('T')[0];
+}
+
+function updateHeaderDate() {
+  const today = new Date();
+  const day = today.getDate();
+  const monthStr = today.toLocaleString('default', { month: 'long' });
+
+  const getOrdinal = (n) => {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
+
+  document.getElementById('header-date').innerText = `${getOrdinal(day)} ${monthStr}`;
+}
