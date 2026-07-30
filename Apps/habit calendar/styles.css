@@ -1,209 +1,171 @@
+
 /* iOS Dark Mode Variables */
 :root {
   --bg-color: #000000;
   --card-bg: #1C1C1E;
   --text-main: #FFFFFF;
   --text-muted: #8E8E93;
-  --accent: #32D74B;
-  /* iOS Dark Mode Green */
+  --accent: #32D74B;           /* iOS Dark Mode Green */
   --accent-bg: rgba(50, 215, 75, 0.15);
-  --danger: #FF453A;
-  /* iOS Dark Mode Red */
+  --danger: #FF453A;           /* iOS Dark Mode Red */
   --danger-bg: rgba(255, 69, 58, 0.15);
   --border: #38383A;
+  --raw-color: #64D2FF;        /* iOS light blue - raw data */
+  --smooth-color: #32D74B;     /* accent green - smoothed line */
+  --trend-color: #FF9F0A;      /* iOS orange - linear trend */
+  --raw-bg: rgba(100, 210, 255, 0.15);
 }
 
-* {
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
+* { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-main);
   margin: 0;
-  padding: 24px 20px;
+  padding: 24px 20px 40px;
   -webkit-font-smoothing: antialiased;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Typography */
-header {
-  margin-bottom: 24px;
-}
+header { margin-bottom: 24px; display: flex; align-items: flex-start; justify-content: space-between; }
+h1 { font-size: 34px; font-weight: 800; margin: 0 0 4px 0; letter-spacing: -0.5px; }
+.date-subtitle { color: var(--text-muted); font-size: 16px; font-weight: 500; }
 
-h1 {
-  font-size: 34px;
-  font-weight: 800;
-  margin: 0 0 4px 0;
-  letter-spacing: -0.5px;
-}
-
-.date-subtitle {
-  color: var(--text-muted);
-  font-size: 16px;
-  font-weight: 500;
-}
-
-/* Cards */
-.card {
+.icon-btn {
   background: var(--card-bg);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-}
-
-.card-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Cumulative Section */
-.flex-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.cumulative-val {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.cumulative-kg {
-  font-size: 17px;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-/* Calendar Grid */
-.calendar-header {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  font-size: 13px;
-  color: var(--text-muted);
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px 0px;
-  text-align: center;
-}
-
-.day-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
   border: none;
+  color: var(--text-main);
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  font-size: 17px;
-  font-weight: 400;
   cursor: pointer;
-  background: transparent;
-  color: var(--text-main);
-  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.day-btn.has-data {
-  background: var(--border);
-  font-weight: 500;
-}
-
-.day-btn.selected {
-  background: var(--accent);
-  color: #000000; /* High contrast text on dark mode green */
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(50, 215, 75, 0.2);
-}
-
-.day-btn:active {
-  transform: scale(0.9);
-}
-
-/* Input Section */
-.input-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--bg-color);
-  border-radius: 14px;
-  padding: 16px;
-  margin-bottom: 16px;
-}
-
-.input-wrapper input {
-  border: none;
-  background: transparent;
-  font-size: 24px;
-  font-weight: 700;
-  width: 50%;
-  outline: none;
-  color: var(--text-main);
-  padding: 0;
-}
-
-.input-wrapper input::placeholder {
-  color: #636366; /* iOS Dark Mode placeholder */
-  font-weight: 500;
-}
-
-.input-suffix {
-  width: 50%;
-  text-align: right;
-  font-size: 15px;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.deficit-text {
-  color: var(--accent);
-}
-
-.surplus-text {
-  color: var(--danger);
-}
-
-/* Buttons */
-.btn-group {
-  display: flex;
-  gap: 12px;
-}
-
-.btn {
-  flex: 1;
-  padding: 16px;
-  border-radius: 14px;
-  font-size: 17px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
+  flex-shrink: 0;
   transition: opacity 0.2s, transform 0.1s;
 }
+.icon-btn:active { opacity: 0.7; transform: scale(0.94); }
+.icon-btn svg { width: 20px; height: 20px; }
 
-.btn:active {
-  opacity: 0.8;
-  transform: scale(0.98);
-}
+/* Cards */
+.card { background: var(--card-bg); border-radius: 20px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2); }
+.card-title { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-.btn-save {
-  background: var(--accent);
-  color: #000000;
-  box-shadow: 0 4px 10px rgba(50, 215, 75, 0.15);
-}
+/* Cumulative Section */
+.flex-between { display: flex; justify-content: space-between; align-items: baseline; }
+.cumulative-val { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
+.cumulative-kg { font-size: 17px; color: var(--text-muted); font-weight: 500; }
 
-.btn-reset {
-  background: var(--danger-bg);
-  color: var(--danger);
+/* Month navigation */
+.month-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.month-nav-btn {
+  background: var(--border);
+  border: none;
+  color: var(--text-main);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: opacity 0.2s, transform 0.1s;
 }
+.month-nav-btn:active { transform: scale(0.9); }
+.month-nav-btn.disabled { opacity: 0.25; pointer-events: none; }
+.month-label { font-size: 16px; font-weight: 700; letter-spacing: -0.2px; }
+
+/* Calendar Grid */
+.calendar-header { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 13px; color: var(--text-muted); font-weight: 600; margin-bottom: 16px; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px 0px; text-align: center; }
+
+.day-btn {
+  width: 38px; height: 38px; border-radius: 50%; border: none;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto; font-size: 17px; font-weight: 400; cursor: pointer;
+  background: transparent; color: var(--text-main);
+  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.day-btn.has-data { background: var(--border); font-weight: 500; }
+.day-btn.selected { background: var(--accent); color: #000000; font-weight: 600; box-shadow: 0 4px 10px rgba(50, 215, 75, 0.2); }
+.day-btn:active { transform: scale(0.9); }
+
+/* Input Section */
+.input-wrapper { display: flex; align-items: center; justify-content: space-between; background: var(--bg-color); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+.input-wrapper input { border: none; background: transparent; font-size: 24px; font-weight: 700; width: 50%; outline: none; color: var(--text-main); padding: 0; }
+.input-wrapper input::placeholder { color: #636366; font-weight: 500; }
+.input-suffix { width: 50%; text-align: right; font-size: 15px; color: var(--text-muted); font-weight: 500; }
+.deficit-text { color: var(--accent); }
+.surplus-text { color: var(--danger); }
+
+/* Buttons */
+.btn-group { display: flex; gap: 12px; }
+.btn { flex: 1; padding: 16px; border-radius: 14px; font-size: 17px; font-weight: 600; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.1s; }
+.btn:active { opacity: 0.8; transform: scale(0.98); }
+.btn-save { background: var(--accent); color: #000000; box-shadow: 0 4px 10px rgba(50, 215, 75, 0.15); }
+.btn-reset { background: var(--danger-bg); color: var(--danger); }
+
+/* Pages */
+.page { display: none; }
+.page.active { display: block; }
+
+/* Trends page header */
+.trends-header-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+
+/* Granularity tabs */
+.tab-group {
+  display: flex;
+  background: var(--bg-color);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+.tab-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  padding: 10px 0;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.tab-btn.active { background: var(--card-bg); color: var(--text-main); }
+
+/* Chart */
+.chart-wrap { width: 100%; }
+.chart-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+.axis-line { stroke: var(--border); stroke-width: 1; }
+.grid-line { stroke: var(--border); stroke-width: 1; opacity: 0.5; }
+.zero-line { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.axis-label { fill: var(--text-muted); font-size: 8px; font-weight: 500; }
+.raw-line { fill: none; stroke: var(--raw-color); stroke-width: 1.5; opacity: 0.55; }
+.raw-dot { fill: var(--raw-color); opacity: 0.7; }
+.smooth-line { fill: none; stroke: var(--smooth-color); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.trend-line { fill: none; stroke: var(--trend-color); stroke-width: 2; stroke-dasharray: 6 4; }
+.empty-state { color: var(--text-muted); font-size: 15px; text-align: center; padding: 40px 10px; line-height: 1.5; }
+
+/* Legend */
+.legend { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.legend-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-main); }
+.legend-swatch { width: 20px; height: 3px; border-radius: 2px; flex-shrink: 0; }
+.legend-swatch.dot { width: 8px; height: 8px; border-radius: 50%; }
+.legend-swatch.raw { background: var(--raw-color); opacity: 0.7; }
+.legend-swatch.smooth { background: var(--smooth-color); }
+.legend-swatch.trend { background: var(--trend-color); }
+.legend-note { color: var(--text-muted); font-size: 13px; }
+
+/* Trend summary */
+.trend-summary { font-size: 15px; line-height: 1.5; color: var(--text-main); }
+.trend-rate { font-weight: 700; }
+.trend-rate.deficit { color: var(--accent); }
+.trend-rate.surplus { color: var(--danger); }
+.trend-sub { color: var(--text-muted); font-size: 13px; margin-top: 8px; }

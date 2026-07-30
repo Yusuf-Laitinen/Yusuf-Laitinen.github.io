@@ -13,9 +13,21 @@
 
 <body>
 
+
+
+<!-- ============= PAGE 1: TODAY ============= -->
+<div id="page-today" class="page active">
   <header>
-    <h1>Today</h1>
-    <div class="date-subtitle" id="header-date"></div>
+    <div>
+      <h1>Today</h1>
+      <div class="date-subtitle" id="header-date"></div>
+    </div>
+    <button class="icon-btn" onclick="goToPage('trends')" aria-label="View trends">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="3 17 9 11 13 15 21 6"></polyline>
+        <polyline points="14 6 21 6 21 13"></polyline>
+      </svg>
+    </button>
   </header>
 
   <div class="card">
@@ -27,11 +39,15 @@
   </div>
 
   <div class="card">
+    <div class="month-nav">
+      <button class="month-nav-btn" id="prev-month-btn" onclick="changeMonth(-1)" aria-label="Previous month">‹</button>
+      <div class="month-label" id="month-label"></div>
+      <button class="month-nav-btn" id="next-month-btn" onclick="changeMonth(1)" aria-label="Next month">›</button>
+    </div>
     <div class="calendar-header">
       <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
     </div>
-    <div class="calendar-grid" id="calendar-grid">
-    </div>
+    <div class="calendar-grid" id="calendar-grid"></div>
   </div>
 
   <div class="card">
@@ -45,6 +61,44 @@
       <button class="btn btn-reset" onclick="resetData()">Reset</button>
     </div>
   </div>
+</div>
+
+<!-- ============= PAGE 2: TRENDS ============= -->
+<div id="page-trends" class="page">
+  <header>
+    <button class="icon-btn" onclick="goToPage('today')" aria-label="Back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <div>
+      <h1 style="text-align:right;">Trends</h1>
+      <div class="date-subtitle" style="text-align:right;">Historical deficit</div>
+    </div>
+  </header>
+
+  <div class="card">
+    <div class="chart-wrap" id="chart-wrap"></div>
+
+    <div class="tab-group" id="granularity-tabs">
+      <button class="tab-btn" data-gran="day" onclick="setGranularity('day')">Day</button>
+      <button class="tab-btn" data-gran="week" onclick="setGranularity('week')">Week</button>
+      <button class="tab-btn" data-gran="month" onclick="setGranularity('month')">Month</button>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-swatch dot raw"></span>Daily deficit (kcal/day)</div>
+      <div class="legend-item"><span class="legend-swatch smooth"></span>Smoothed trend</div>
+      <div class="legend-item"><span class="legend-swatch trend"></span>Linear trend (rate of change)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Trend summary</div>
+    <div class="trend-summary" id="trend-summary">Log a few days to see your trend.</div>
+    <div class="trend-sub" id="trend-sub"></div>
+  </div>
+</div>
 
   <script src="app.js"></script>
 </body>
