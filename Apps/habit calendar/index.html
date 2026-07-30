@@ -98,6 +98,15 @@
     <div class="trend-summary" id="trend-summary">Log a few days to see your trend.</div>
     <div class="trend-sub" id="trend-sub"></div>
   </div>
+
+  <div class="card">
+    <div class="card-title">Backup</div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="exportData()">Export JSON</button>
+      <button class="btn btn-secondary" onclick="triggerImport()">Import JSON</button>
+    </div>
+    <input type="file" id="import-file-input" accept="application/json,.json" style="display:none" onchange="handleImportFile(event)">
+  </div>
 </div>
 
   <script src="app.js"></script>

@@ -210,6 +210,76 @@ function formatDate(d) {
   return d.toISOString().split('T')[0];
 }
 
+// --- EXPORT / IMPORT ---
+function exportData() {
+  const entries = Object.fromEntries(allEntriesMap);
+  const payload = {
+    app: 'DeficitTracker',
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    dailyTarget: daily_cal_target,
+    entries
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `deficit-tracker-export-${formatDate(new Date())}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function triggerImport() {
+  document.getElementById('import-file-input').click();
+}
+
+function handleImportFile(event) {
+  const file = event.target.files[0];
+  event.target.value = ''; // allow re-selecting the same file later
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    let entries;
+    try {
+      const data = JSON.parse(e.target.result);
+      entries = (data && typeof data === 'object' && data.entries) ? data.entries : data;
+    } catch (err) {
+      alert('Could not read that file. Make sure it is a valid JSON export.');
+      return;
+    }
+
+    const dateKeys = Object.keys(entries || {}).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k));
+    if (dateKeys.length === 0) {
+      alert('No valid entries found in that file.');
+      return;
+    }
+
+    const transaction = db.transaction(["DailyEntries"], "readwrite");
+    const store = transaction.objectStore("DailyEntries");
+    let imported = 0;
+
+    dateKeys.forEach(dateStr => {
+      const consumed = parseInt(entries[dateStr]);
+      if (!isNaN(consumed)) {
+        store.put({ date: dateStr, consumed });
+        imported++;
+      }
+    });
+
+    transaction.oncomplete = () => {
+      loadAllData();
+      alert(`Imported ${imported} day${imported === 1 ? '' : 's'} of data.`);
+    };
+    transaction.onerror = () => {
+      alert('Import failed. Please check the file and try again.');
+    };
+  };
+  reader.readAsText(file);
+}
+
 function updateHeaderDate() {
   const today = new Date();
   const day = today.getDate();
