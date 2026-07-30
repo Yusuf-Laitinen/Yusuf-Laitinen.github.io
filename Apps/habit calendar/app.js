@@ -1,6 +1,6 @@
 
 // --- CONFIGURATION & CONSTANTS ---
-const daily_cal_target = 2800;
+const daily_cal_target = 2400;
 const historical_deficit_offset = 0; // Reset to 0 for a clean slate
 const kcal_per_kg = 7700;
 
@@ -135,7 +135,11 @@ function renderCalendar() {
     btn.className = 'day-btn';
     btn.innerText = day;
 
-    if (allEntriesMap.has(loopDateStr)) btn.classList.add('has-data');
+    if (allEntriesMap.has(loopDateStr)) {
+      btn.classList.add('has-data');
+      const consumed = allEntriesMap.get(loopDateStr);
+      btn.classList.add(consumed <= daily_cal_target ? 'day-deficit' : 'day-surplus');
+    }
     if (loopDateStr === selectedDateStr) btn.classList.add('selected');
 
     btn.onclick = () => {
