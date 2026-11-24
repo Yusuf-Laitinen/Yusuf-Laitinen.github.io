@@ -1,0 +1,11 @@
+{
+  "name": "Star Sprint — OBAFGKM",
+  "short_name": "Star Sprint",
+  "description": "A quick-fire quiz to memorise the temperatures of the OBAFGKM star classes.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#10151d",
+  "theme_color": "#10151d",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
