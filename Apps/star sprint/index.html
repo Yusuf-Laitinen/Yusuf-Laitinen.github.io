@@ -1,82 +1,74 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#10151d">
-  <meta name="description" content="A quick-fire quiz to memorise the temperatures of the OBAFGKM star classes.">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.svg">
-  <title>Star Sprint — OBAFGKM</title>
-  <style>
-    :root{color-scheme:dark;--bg:#10151d;--panel:#1a222c;--muted:#a9b2bb;--ink:#f6f4ec;--lime:#d8f36a;--line:#34404b;--red:#ff7568;--green:#9de19a}
-    *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
-    body{min-height:100svh;background-image:radial-gradient(circle at 14% 16%,#ffffff26 0 1px,transparent 1.6px),radial-gradient(circle at 76% 8%,#ffffff22 0 1px,transparent 1.6px),radial-gradient(circle at 90% 61%,#ffffff18 0 1px,transparent 1.6px),radial-gradient(ellipse at 50% -20%,#334456 0%,transparent 55%);background-size:130px 120px,190px 180px,230px 210px,auto}
-    button{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent} .shell{width:min(100%,640px);min-height:100svh;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}.brand{font-weight:900;font-size:17px;letter-spacing:.04em}.brand b{color:var(--lime)}.round-pill{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:8px 12px;font-weight:750;letter-spacing:.07em}
-    main{flex:1;display:flex;flex-direction:column;justify-content:center}.screen{display:none}.screen.active{display:flex;flex-direction:column;animation:in .24s ease-out}@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-    .eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--lime);font-weight:850;margin:0 0 12px}.hero h1{font-size:clamp(42px,12vw,68px);line-height:.92;letter-spacing:-.065em;margin:0 0 18px;max-width:520px}.hero h1 span{color:var(--lime)}.intro{font-size:17px;line-height:1.5;color:#c3cbd0;max-width:440px;margin:0 0 28px}.feature-row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:28px}.tag{border:1px solid var(--line);background:#ffffff08;border-radius:99px;padding:9px 12px;font-size:13px;font-weight:700;color:#d5dce0}
-    .primary{border:0;border-radius:18px;background:var(--lime);color:#151a18;min-height:64px;padding:16px 22px;font-size:19px;font-weight:950;letter-spacing:-.02em;box-shadow:0 5px 0 #8fa53a;cursor:pointer}.primary:active{transform:translateY(3px);box-shadow:0 2px 0 #8fa53a}.hint{font-size:12px;color:#84909b;text-align:center;margin:17px 0 0}
-    .progress-wrap{display:flex;align-items:center;gap:12px;margin:0 0 22px}.progress{height:8px;flex:1;background:#303a44;border-radius:99px;overflow:hidden}.progress>i{display:block;height:100%;width:0;background:var(--lime);border-radius:inherit;transition:width .25s}.count{font-size:13px;color:var(--muted);font-weight:800;min-width:48px;text-align:right}
-    .question-card{border:1px solid #ffffff13;background:linear-gradient(145deg,#202a35ed,#171e27ed);border-radius:28px;padding:25px 20px 22px;text-align:center;box-shadow:0 18px 45px #0003;margin-bottom:18px}.question-card .eyebrow{margin:0 0 8px;color:#aeb9c4}.temp{font-size:clamp(62px,18vw,92px);line-height:1;letter-spacing:-.075em;font-weight:950;margin:5px 0 2px;font-variant-numeric:tabular-nums}.unit{font-size:26px;color:#c0c8ce;letter-spacing:0}.prompt{font-size:16px;color:#c1c9ce;margin:10px 0 0}.choices{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.choice{height:clamp(72px,16vw,92px);border:0;border-radius:20px;font-size:clamp(28px,8vw,38px);font-weight:950;color:#171a1b;cursor:pointer;box-shadow:0 4px 0 #0003;transition:transform .1s,filter .1s;position:relative}.choice:active{transform:translateY(3px);box-shadow:0 1px 0 #0003}.choice:nth-child(1){background:#87d4f2}.choice:nth-child(2){background:#ff8879}.choice:nth-child(3){background:#f1cf61}.choice:nth-child(4){background:#8bdd91}.choice:nth-child(5){background:#cb9beb}.choice:nth-child(6){background:#f29dca}.choice:nth-child(7){background:#e2e9ee}.choice[disabled]{cursor:default}.choice.wrong{filter:grayscale(.85);opacity:.32}.choice.correct{outline:4px solid white;outline-offset:2px;transform:scale(.96)}
-    .feedback{min-height:48px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:15px;font-weight:850;color:var(--red);padding:7px}.feedback.good{color:var(--green)}.feedback span{color:var(--muted);font-weight:650;margin-left:5px}
-    .result{text-align:center;align-items:center}.medal{width:100px;height:100px;display:grid;place-items:center;background:#d8f36a16;border:1px solid #d8f36a55;border-radius:50%;font-size:48px;margin:8px 0 23px}.result h2{font-size:clamp(42px,12vw,60px);letter-spacing:-.06em;line-height:.96;margin:0 0 10px}.score{font-size:clamp(56px,16vw,82px);font-weight:950;letter-spacing:-.08em;color:var(--lime);line-height:1.1;margin:6px}.score-label{font-size:14px;color:var(--muted);margin:0 0 25px}.result-copy{color:#c5cdd1;font-size:16px;line-height:1.5;margin:0 0 26px}.result .primary{width:100%}.footer{font-size:11px;color:#687581;text-align:center;padding-top:18px}
-    #confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:4}.piece{position:absolute;top:-12px;width:8px;height:12px;border-radius:2px;animation:fall var(--dur) linear forwards;transform:rotate(var(--rot))}@keyframes fall{to{transform:translate(var(--drift),105vh) rotate(780deg)}}
-    @media(max-width:370px){.shell{padding-left:13px;padding-right:13px}.choices{gap:8px}.choice{border-radius:16px}.question-card{padding:20px 14px}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-  </style>
-</head>
-<body>
-<div id="confetti" aria-hidden="true"></div>
-<div class="shell">
-  <header><div class="brand">STAR <b>SPRINT</b></div><div class="round-pill" id="header-pill">OBAFGKM</div></header>
-  <main>
-    <section class="screen active hero" id="start-screen">
-      <p class="eyebrow">A tiny astronomy quiz</p>
-      <h1>How hot is<br><span>that star?</span></h1>
-      <p class="intro">See a temperature. Tap its star class. Seven classes, two quick laps, and a score at the end.</p>
-      <div class="feature-row"><span class="tag">14 quick questions</span><span class="tag">Tap or use keys 1–7</span><span class="tag">Wrong? Try again</span></div>
-      <button class="primary" id="start">Let’s go →</button>
-      <p class="hint">OBAFGKM · hottest to coolest</p>
-    </section>
-    <section class="screen" id="game-screen" aria-live="polite">
-      <div class="progress-wrap"><div class="progress"><i id="progress-bar"></i></div><div class="count" id="count">1 / 14</div></div>
-      <div class="question-card"><p class="eyebrow">Which star class?</p><div class="temp" id="temperature">30,000<span class="unit"> K</span></div><p class="prompt">Tap the matching letter</p></div>
-      <div class="choices" id="choices" aria-label="Choose a star class"></div>
-      <div class="feedback" id="feedback" aria-live="assertive"> </div>
-    </section>
-    <section class="screen result" id="result-screen">
-      <div class="medal" id="medal">✦</div><p class="eyebrow">Sprint complete</p><h2 id="result-title">Nice work.</h2><div class="score" id="score">0</div><p class="score-label">points · out of 14,000</p><p class="result-copy" id="result-copy"></p><button class="primary" id="again">Run it back ↻</button>
-    </section>
-  </main>
-  <footer class="footer">Temperature ranges are approximate · measured in kelvin</footer>
-</div>
-<script>
-(()=>{
-  const classes=[
-    {letter:'O',low:30000,high:50000,label:'30,000 K and hotter'},
-    {letter:'B',low:10000,high:29999,label:'10,000–30,000 K'},
-    {letter:'A',low:7500,high:9999,label:'7,500–10,000 K'},
-    {letter:'F',low:6000,high:7499,label:'6,000–7,500 K'},
-    {letter:'G',low:5200,high:5999,label:'5,200–6,000 K'},
-    {letter:'K',low:3700,high:5199,label:'3,700–5,200 K'},
-    {letter:'M',low:2500,high:3699,label:'below 3,700 K'}
-  ];
-  const colors=['#87d4f2','#ff8879','#f1cf61','#8bdd91','#cb9beb','#f29dca','#e2e9ee'];
-  const $=id=>document.getElementById(id); let questions=[],index=0,points=0,firstTry=[],locked=false;
-  function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id))}
-  function makeQuestions(){let list=[];for(let lap=0;lap<2;lap++){const group=[...classes].sort(()=>Math.random()-.5);group.forEach(c=>{const t=Math.floor(c.low+Math.random()*(c.high-c.low+1));list.push({letter:c.letter,temp:t,clean:true})})}return list}
-  function renderChoices(){const host=$('choices');host.innerHTML='';classes.forEach((c,i)=>{const b=document.createElement('button');b.className='choice';b.textContent=c.letter;b.setAttribute('aria-label',`Star class ${c.letter}`);b.addEventListener('click',()=>answer(c.letter,b));host.appendChild(b)})}
-  function start(){questions=makeQuestions();index=0;points=0;firstTry=[];renderChoices();show('game-screen');draw()}
-  function draw(){locked=false;const q=questions[index];$('temperature').innerHTML=`${q.temp.toLocaleString()}<span class="unit"> K</span>`;$('count').textContent=`${index+1} / ${questions.length}`;$('progress-bar').style.width=`${index/questions.length*100}%`;$('feedback').className='feedback';$('feedback').textContent=' ';document.querySelectorAll('.choice').forEach(b=>{b.disabled=false;b.classList.remove('wrong','correct')})}
-  function answer(letter,button){if(locked)return;const q=questions[index];if(letter!==q.letter){q.clean=false;button.disabled=true;button.classList.add('wrong');const c=classes.find(x=>x.letter===q.letter);$('feedback').className='feedback';$('feedback').innerHTML=`Not quite <span>— ${c.label}</span>`;return}locked=true;button.classList.add('correct');if(q.clean){points+=1000;firstTry.push(true)}else firstTry.push(false);$('feedback').className='feedback good';$('feedback').textContent=q.clean?'Correct! +1,000':'That’s it!';document.querySelectorAll('.choice').forEach(b=>b.disabled=true);setTimeout(()=>{index++;if(index===questions.length)finish();else draw()},420)}
-  function finish(){ $('progress-bar').style.width='100%';$('score').textContent=points.toLocaleString();const accuracy=points/100;let title,copy,medal;if(accuracy===14){title='Perfect run!';copy='Every class landed first try. You’ve got OBAFGKM temperatures down.';medal='🏆'}else if(accuracy>=10){title='Star player.';copy=`${accuracy} of 14 were right on the first tap. Keep those temperature bands in orbit.`;medal='🌟'}else if(accuracy>=6){title='Good orbit.';copy=`${accuracy} of 14 were first-tap hits. A few more laps and those ranges will stick.`;medal='🪐'}else{title='Warm-up lap.';copy='The ranges take practice. Run it again and see what sticks.';medal='🚀'}$('result-title').textContent=title;$('result-copy').textContent=copy;$('medal').textContent=medal;show('result-screen');if(accuracy>=10)confetti()}
-  function confetti(){const host=$('confetti');host.innerHTML='';for(let i=0;i<76;i++){const p=document.createElement('i');p.className='piece';p.style.left=Math.random()*100+'%';p.style.background=colors[Math.floor(Math.random()*colors.length)];p.style.setProperty('--dur',(2.2+Math.random()*1.8)+'s');p.style.setProperty('--drift',(Math.random()*180-90)+'px');p.style.setProperty('--rot',Math.random()*180+'deg');p.style.animationDelay=(Math.random()*.55)+'s';host.appendChild(p)}setTimeout(()=>host.innerHTML='',4500)}
-  $('start').addEventListener('click',start);$('again').addEventListener('click',start);
-  document.addEventListener('keydown',e=>{if(!$('game-screen').classList.contains('active')||locked)return;const key=e.key.toUpperCase();const i=/^[1-7]$/.test(e.key)?Number(e.key)-1:classes.findIndex(c=>c.letter===key);if(i>=0){const b=$('choices').children[i];if(b&&!b.disabled)answer(classes[i].letter,b)}});
-  if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-})();
-</script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#10151d">
+    <meta name="description" content="A quick-fire quiz to memorise the temperatures of the OBAFGKM star classes.">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>Star Sprint — OBAFGKM</title>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div id="confetti" aria-hidden="true"></div>
+
+    <div class="shell">
+      <header>
+        <div class="brand">STAR <b>SPRINT</b></div>
+        <div class="round-pill">OBAFGKM</div>
+      </header>
+
+      <main>
+        <section class="screen active intro-screen" id="intro-screen">
+          <p class="eyebrow">Quick temperature refresher</p>
+          <h1>Hot to<br><span>cool.</span></h1>
+          <p class="intro-copy">OBAFGKM runs from the hottest stars to the coolest. Here are the approximate surface temperatures:</p>
+
+          <div class="temperature-list" aria-label="Approximate star class temperature ranges">
+            <div class="temperature-row"><span class="class-letter class-o">O</span><span>25,000–50,000 K</span></div>
+            <div class="temperature-row"><span class="class-letter class-b">B</span><span>11,000–25,000 K</span></div>
+            <div class="temperature-row"><span class="class-letter class-a">A</span><span>7,500–11,000 K</span></div>
+            <div class="temperature-row"><span class="class-letter class-f">F</span><span>6,000–7,500 K</span></div>
+            <div class="temperature-row"><span class="class-letter class-g">G</span><span>5,000–6,000 K</span></div>
+            <div class="temperature-row"><span class="class-letter class-k">K</span><span>3,500–5,000 K</span></div>
+            <div class="temperature-row"><span class="class-letter class-m">M</span><span>&lt; 3,500 K</span></div>
+          </div>
+
+          <button class="primary" id="start">Start 14-question sprint →</button>
+          <p class="hint">Ranges are approximate · temperatures in kelvin</p>
+        </section>
+
+        <section class="screen game-screen" id="game-screen" aria-live="polite">
+          <div class="progress-wrap">
+            <div class="progress"><i id="progress-bar"></i></div>
+            <div class="count" id="count">1 / 14</div>
+          </div>
+
+          <div class="question-card">
+            <p class="eyebrow">Which star class?</p>
+            <div class="temp" id="temperature">30,000<span class="unit"> K</span></div>
+            <p class="prompt">Tap the matching letter</p>
+          </div>
+
+          <div class="choices" id="choices" aria-label="Choose a star class"></div>
+          <div class="feedback" id="feedback" aria-live="assertive"></div>
+        </section>
+
+        <section class="screen result-screen" id="result-screen">
+          <div class="medal" id="medal">✦</div>
+          <p class="eyebrow">Sprint complete</p>
+          <h2 id="result-title">Nice work.</h2>
+          <div class="score" id="score">0</div>
+          <p class="score-label">points · out of 14,000</p>
+          <p class="result-copy" id="result-copy"></p>
+          <button class="primary" id="again">Run it back ↻</button>
+        </section>
+      </main>
+
+      <footer class="footer">OBAFGKM · hottest to coolest</footer>
+    </div>
+  </body>
 </html>
